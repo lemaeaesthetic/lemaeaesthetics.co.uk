@@ -2,9 +2,8 @@ import React from "react";
 import type { AppProps } from "next/app";
 import "styles/index.scss";
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
-  // eslint-disable-next-line react/jsx-props-no-spreading
+const LeMaeAestheticsApp = ({ Component, pageProps }: AppProps) => {
   return <Component {...pageProps} />;
 };
 
-export default MyApp;
+export default LeMaeAestheticsApp;
