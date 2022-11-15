@@ -10,7 +10,7 @@ interface MetaProps extends HTMLAttributes<HTMLHeadElement> {
   siteName?: string;
 }
 
-const Meta: React.FC<MetaProps> = ({
+export const Meta: React.FC<MetaProps> = ({
   url,
   title,
   description,
@@ -36,5 +36,3 @@ Meta.defaultProps = {
   favicon: siteInfo.favicon,
   siteName: siteInfo.name,
 };
-
-export default Meta;

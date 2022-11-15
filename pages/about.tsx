@@ -1,7 +1,7 @@
 import React from "react";
 import type { NextPage } from "next";
 import pages from "config/data/page.data";
-import Meta from "components/Meta/Meta.component";
+import { Meta } from "components/Meta/Meta.component";
 
 const About: NextPage = () => {
   return (
