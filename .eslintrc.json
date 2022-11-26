@@ -17,6 +17,7 @@
   },
   "rules": {
     "import/prefer-default-export": "off",
+    "react/button-has-type": "off",
     "react/jsx-props-no-spreading": [
       "error",
       {

@@ -17,3 +17,12 @@ export interface PageData {
   title: string;
   description: string;
 }
+
+export const inputTypes = [
+  "text",
+  "email",
+  "number",
+  "alpha",
+  "alphanumerical",
+] as const;
+export type InputType = typeof inputTypes[number];
