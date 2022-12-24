@@ -1,0 +1,10 @@
+.nav {
+  position: sticky;
+  top: 0;
+  background-color: var(--pink);
+  margin: 0;
+  display: flex;
+  height: var(--nav-height);
+  z-index: 9;
+  padding: var(--small);
+}

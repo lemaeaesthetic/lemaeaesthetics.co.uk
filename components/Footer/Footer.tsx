@@ -1,23 +1,19 @@
 import React from "react";
 
-interface NavigationMenuProps {
+interface FooterProps {
   className?: string;
   style?: React.CSSProperties;
   id?: string;
 }
 
-const NavigationMenu: React.FC<NavigationMenuProps> = ({
-  className,
-  id,
-  style,
-}) => {
+const Footer: React.FC<FooterProps> = ({ className, id, style }) => {
   return <div style={style} className={className} id={id} />;
 };
 
-NavigationMenu.defaultProps = {
+Footer.defaultProps = {
   className: undefined,
   style: undefined,
   id: undefined,
 };
 
-export { NavigationMenu };
+export { Footer };

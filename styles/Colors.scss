@@ -1,11 +1,27 @@
 :root {
+  // Colours
   --off-black: #333333;
   --blue: #7481aa;
   --purple: #8674aa;
   --lavender: #a6b8f3;
   --light-purple: #cda5f3;
-  --pink: #dba5f3;
+  --pink: #ff9ac8;
   --off-white-blue: #f3f6ff;
   --off-white-pink: #faf6fe;
   --yellow: #fcea10;
+
+  // Buttons
+  --primary: #1b9aaa;
+  --primary-dark: #146a75;
+  --secondary: #ff479a;
+  --secondary-dark: #9d2a5e;
+  --tertiary: #f07167;
+  --tertiary-dark: #984640;
+
+  // Sizes
+  --small: 0.5rem;
+  --medium: 1rem;
+  --large: 1.5rem;
+  --x-large: 2rem;
+  --nav-height: 75px;
 }

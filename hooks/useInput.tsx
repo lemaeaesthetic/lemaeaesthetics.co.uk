@@ -1,5 +1,13 @@
 import { ChangeEvent, ChangeEventHandler, useState } from "react";
-import { InputType } from "types/data.type";
+
+export const inputTypes = [
+  "text",
+  "email",
+  "number",
+  "alpha",
+  "alphanumerical",
+] as const;
+export type InputType = typeof inputTypes[number];
 
 const TEXT_REGEX = /^[\w\d\s,()./*%$@£!_&-]+$/;
 const EMAIL_REGEX =

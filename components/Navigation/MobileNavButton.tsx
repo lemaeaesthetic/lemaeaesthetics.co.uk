@@ -1,23 +1,38 @@
+import { FaBars } from "react-icons/fa";
+import { Button } from "components/Base/Button";
 import React from "react";
+import styles from "components/Navigation/MobileNavButton.module.scss";
 
 interface MobileNavButtonProps {
   className?: string;
   style?: React.CSSProperties;
   id?: string;
+  onClick: any;
 }
 
-const MobileNaveButton: React.FC<MobileNavButtonProps> = ({
+const MobileNavButton: React.FC<MobileNavButtonProps> = ({
   className,
   id,
   style,
+  onClick,
 }) => {
-  return <div style={style} className={className} id={id} />;
+  return (
+    <Button
+      type="button"
+      onClick={onClick}
+      style={style}
+      className={`${styles.button} ${className}`}
+      id={id}
+    >
+      <FaBars size={20} />
+    </Button>
+  );
 };
 
-MobileNaveButton.defaultProps = {
+MobileNavButton.defaultProps = {
   className: undefined,
   style: undefined,
   id: undefined,
 };
 
-export { MobileNaveButton };
+export { MobileNavButton };

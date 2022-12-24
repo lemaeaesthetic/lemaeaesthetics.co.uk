@@ -1,12 +1,12 @@
 import React from "react";
 
-interface NavigationLinkProps {
+interface FooterColumnProps {
   className?: string;
   style?: React.CSSProperties;
   id?: string;
 }
 
-const NavigationLink: React.FC<NavigationLinkProps> = ({
+const FooterColumn: React.FC<FooterColumnProps> = ({
   className,
   id,
   style,
@@ -14,10 +14,10 @@ const NavigationLink: React.FC<NavigationLinkProps> = ({
   return <div style={style} className={className} id={id} />;
 };
 
-NavigationLink.defaultProps = {
+FooterColumn.defaultProps = {
   className: undefined,
   style: undefined,
   id: undefined,
 };
 
-export { NavigationLink };
+export { FooterColumn };

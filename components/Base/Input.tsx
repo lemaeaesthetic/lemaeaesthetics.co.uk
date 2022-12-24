@@ -1,6 +1,5 @@
-import { useInput } from "hooks/useInput";
+import { useInput, InputType } from "hooks/useInput";
 import React, { forwardRef } from "react";
-import { InputType } from "types/data.type";
 
 interface InputProps {
   className?: string;
@@ -10,11 +9,20 @@ interface InputProps {
   required?: boolean;
   defaultValue?: string;
   placeholder?: string;
+  testId?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { className, id, style, type, required, defaultValue, placeholder } =
-    props;
+  const {
+    className,
+    testId,
+    id,
+    style,
+    type,
+    required,
+    defaultValue,
+    placeholder,
+  } = props;
   const { handleBlur, handleInput, value, isValid } = useInput(
     type,
     defaultValue
@@ -22,11 +30,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return (
     <div>
       <input
+        data-testid={testId}
         ref={ref}
         style={style}
         className={className}
         id={id}
-        defaultValue={defaultValue}
         placeholder={placeholder}
         type={type}
         required={required}
@@ -46,6 +54,7 @@ Input.defaultProps = {
   placeholder: "Enter text",
   required: false,
   defaultValue: "some val",
+  testId: undefined,
 };
 
 export { Input };

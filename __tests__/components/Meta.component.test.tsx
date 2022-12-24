@@ -1,5 +1,5 @@
 import { getAllMeta, render, screen } from "utils";
-import { Meta } from "components/Meta/Meta.component";
+import { Meta } from "components/Meta/Meta";
 
 const TITLE = "Website";
 const DESCRIPTION = "This is my website";

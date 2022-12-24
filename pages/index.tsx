@@ -1,11 +1,15 @@
 import React from "react";
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import pages from "config/data/page.data";
-import { Meta } from "components/Meta/Meta.component";
-import Image from "next/image";
-import logo from "public/making-stuffs-logo-new-150.png";
+import { Meta } from "components/Meta/Meta";
+import { Header } from "components/Header/Header";
+import { NavMenu } from "components/Navigation/NavMenu";
+import { fetchAllServices, fetchMainNav } from "services/graphQl.service";
+import { FeaturedTreatmentsSection } from "components/Sections/FeaturedTreatments/FeaturedTreatments";
+import { AboutUsSection } from "components/Sections/AboutUs/AboutUs";
 
-const Home: NextPage = () => {
+const Home: NextPage = (props: any) => {
+  const { services } = props;
   return (
     <div>
       <Meta
@@ -15,24 +19,32 @@ const Home: NextPage = () => {
         url={pages.homePage.slug}
       />
       <main>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "100vh",
-            width: "100vw",
-          }}
-        >
-          <Image src={logo} width={75} height={75} layout="fixed" />
-          <h1 style={{ color: "#f2f2f2", marginBottom: 0 }}>Next JS Starter</h1>
-          <p style={{ color: "#f2f2f2" }}>Happy building!</p>
-        </div>
+        <NavMenu />
+        <Header type="hero" />
+        <FeaturedTreatmentsSection treatments={services} />
+        <AboutUsSection />
       </main>
       <footer />
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const links = await fetchMainNav();
+    const services = await fetchAllServices();
+    if (links && services) {
+      return {
+        props: {
+          nav: links,
+          services,
+        },
+      };
+    }
+    return { notFound: true };
+  } catch (e) {
+    return { notFound: true };
+  }
 };
 
 export default Home;

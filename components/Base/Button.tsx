@@ -1,31 +1,37 @@
 import React from "react";
+import styles from "components/Base/Button.module.scss";
 
-interface ButtonProps {
+interface ButtonBaseProps {
   className?: string;
   style?: React.CSSProperties;
   id?: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
-  label: string;
   type: "button" | "submit" | "reset";
 }
 
-const Button: React.FC<ButtonProps> = ({
-  className,
-  id,
-  style,
-  onClick,
-  label,
-  type,
-}) => {
+interface ButtonWithLabel {
+  label: string;
+}
+
+interface ButtonWithChildren {
+  children: React.ReactNode;
+}
+
+type ButtonProps = ButtonWithLabel | ButtonWithChildren;
+
+const Button: React.FC<ButtonProps & ButtonBaseProps> = (props) => {
+  const { className, id, style, onClick, type } = props;
   return (
     <button
       type={type || "button"}
       style={style}
-      className={className}
+      className={`${styles.button} ${className}`}
       id={id}
       onClick={onClick}
     >
-      {label}
+      {"label" in props
+        ? (props as ButtonWithLabel).label
+        : (props as ButtonWithChildren).children}
     </button>
   );
 };

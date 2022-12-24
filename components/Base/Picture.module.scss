@@ -1,0 +1,13 @@
+.picture {
+  position: relative;
+  display: block;
+
+  > span {
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  img {
+    object-fit: contain;
+  }
+}
