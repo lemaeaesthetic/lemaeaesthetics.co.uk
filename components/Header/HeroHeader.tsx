@@ -23,16 +23,18 @@ const HeroHeader: React.FC<HeroHeaderProps> = ({
       className={`${styles["hero-header"]} ${className}`}
       id={id}
     >
-      <div>
-        <h1>{title}</h1>
-        <Button type="button" label="See our Treatments" onClick={() => {}} />
+      <div className={styles["inner-wrap"]}>
+        <div>
+          <h1>{title}</h1>
+          <Button type="button" label="See our Treatments" onClick={() => {}} />
+        </div>
+        <Picture
+          src="/assets/images/model-standing.png"
+          alt="Female model looking to the left"
+          minWidth="200px"
+          minHeight="300px"
+        />
       </div>
-      <Picture
-        src="/assets/images/model-standing.png"
-        alt="Female model looking to the left"
-        minWidth="200px"
-        minHeight="300px"
-      />
     </header>
   );
 };

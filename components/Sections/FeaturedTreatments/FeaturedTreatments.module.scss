@@ -1,6 +1,13 @@
 .wrapper {
   display: flex;
   flex-wrap: wrap;
+  max-width: 900px;
+  margin: auto;
+  > div {
+    width: 50%;
+    flex-basis: 350px;
+    flex-grow: 1;
+  }
 }
 
 .slider {

@@ -1,10 +1,14 @@
 .hero-header {
-  display: flex;
   background-color: var(--pink);
   min-height: 300px;
+}
+
+.inner-wrap {
+  max-width: 900px;
+  display: flex;
   padding: var(--medium);
   padding-bottom: 0;
-
+  margin: auto;
   div,
   picture {
     display: inline-block;
