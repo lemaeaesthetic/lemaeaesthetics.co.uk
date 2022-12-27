@@ -15,6 +15,8 @@
   border-radius: 8px;
   border: 1px solid var(--grey);
   outline-color: var(--pink);
+  appearance: none;
+  color: var(--dark);
 
   &:focus {
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
