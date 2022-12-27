@@ -1,20 +1,30 @@
 import { useInput, InputType } from "hooks/useInput";
 import React, { forwardRef } from "react";
+import styles from "components/Base/Input.module.scss";
 
 interface InputProps {
   className?: string;
   style?: React.CSSProperties;
-  id?: string;
+  id: string;
   type: InputType;
   required?: boolean;
   defaultValue?: string;
   placeholder?: string;
   testId?: string;
+  label?: string;
+  changeCallback?: any;
+  max?: number;
+  min?: number;
+  minLength?: number;
+  maxLength?: number;
+  value?: string;
+  name: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     className,
+    changeCallback,
     testId,
     id,
     style,
@@ -22,26 +32,67 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     required,
     defaultValue,
     placeholder,
+    label,
+    name,
+    max,
+    min,
+    maxLength,
+    minLength,
+    value,
   } = props;
-  const { handleBlur, handleInput, value, isValid } = useInput(
-    type,
-    defaultValue
-  );
+
+  const options =
+    min || max || maxLength || minLength
+      ? { min, max, maxLength, minLength }
+      : undefined;
+
+  const {
+    handleBlur,
+    handleInput,
+    value: internalValue,
+    isValid,
+    isDirty,
+  } = useInput(type, defaultValue, value, options);
+
+  const classes = `${className ? `${className} ` : ""}${styles.wrapper}`;
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    handleInput(event);
+    if (changeCallback && typeof changeCallback === "function") {
+      changeCallback(event);
+    }
+  };
+
   return (
-    <div>
+    <div className={classes}>
+      {label ? (
+        <label className={styles.label} htmlFor={id}>
+          {label}
+        </label>
+      ) : null}
       <input
+        name={name}
+        id={id}
         data-testid={testId}
         ref={ref}
         style={style}
-        className={className}
-        id={id}
+        className={styles.input}
         placeholder={placeholder}
         type={type}
         required={required}
-        onChange={handleInput}
+        onChange={handleChange}
         onBlur={handleBlur}
-        value={value || defaultValue}
+        onFocus={(event) => event?.currentTarget.removeAttribute("data-valid")}
+        value={
+          isDirty
+            ? value || internalValue || ""
+            : defaultValue || value || internalValue || ""
+        }
         data-valid={isValid}
+        max={max}
+        min={min}
+        maxLength={maxLength}
+        minLength={minLength}
       />
     </div>
   );
@@ -50,11 +101,17 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 Input.defaultProps = {
   className: undefined,
   style: undefined,
-  id: undefined,
-  placeholder: "Enter text",
+  placeholder: undefined,
   required: false,
-  defaultValue: "some val",
+  defaultValue: undefined,
   testId: undefined,
+  label: undefined,
+  changeCallback: undefined,
+  min: undefined,
+  max: undefined,
+  minLength: undefined,
+  maxLength: undefined,
+  value: undefined,
 };
 
 export { Input };

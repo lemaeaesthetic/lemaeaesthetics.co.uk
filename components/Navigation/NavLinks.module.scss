@@ -33,7 +33,7 @@
 }
 
 .drawer-wrapper {
-  background-color: var(--pink);
+  background-color: #fff;
   width: 90%;
   height: 100%;
   right: 0;
@@ -44,8 +44,20 @@
 
 .close-button {
   background-color: transparent;
-  margin: var(--small);
   margin-left: auto;
+  padding: 4px;
+  align-self: center;
+
+  &:hover {
+    background-color: var(--pink);
+    border-color: var(--pink);
+    svg {
+      fill: #fff;
+    }
+  }
+  svg {
+    fill: var(--pink);
+  }
 }
 
 .nav-links {
@@ -58,4 +70,9 @@
 .mobile-header {
   display: flex;
   justify-content: space-between;
+  padding: 0 12px;
+  picture {
+    width: 100px;
+    object-fit: contain;
+  }
 }

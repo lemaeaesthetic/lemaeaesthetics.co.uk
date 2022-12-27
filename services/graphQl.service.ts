@@ -2,12 +2,16 @@ import {
   NAVIGATION_COLLECTION,
   PAGE_COLLECTION,
   SERVICE_COLLECTION,
+  SITE_INFO_COLLECTION,
+  SOCIAL_NETWORKS_COLLECTION,
 } from "config/data/collection.data";
 import {
   ALL_NAV_FIELDS,
   ALL_PAGE_FIELDS,
   ALL_SERVICE_FIELDS,
+  SITE_INFO_FIELDS,
 } from "config/data/queryField.data";
+import { Navigation } from "types/cms";
 
 export const fetchFromGraphQl = async (query: string) => {
   const req = await fetch(
@@ -26,7 +30,9 @@ export const fetchFromGraphQl = async (query: string) => {
   return res?.data;
 };
 
-export const fetchMainNav = async () => {
+export const fetchMainNav = async (): Promise<
+  Navigation | undefined | unknown
+> => {
   try {
     const collection = NAVIGATION_COLLECTION;
     const query = `query GetMainNav {
@@ -35,7 +41,13 @@ export const fetchMainNav = async () => {
             }
         }`;
     const response = await fetchFromGraphQl(query);
-    return response?.[NAVIGATION_COLLECTION]?.items[0];
+    const object = response?.[NAVIGATION_COLLECTION]?.items[0];
+    if (!object) return undefined;
+    return {
+      showServices: object.showServices,
+      entries: object.entryCollection.items,
+      type: object.type[0],
+    };
   } catch (e) {
     return e;
   }
@@ -87,6 +99,29 @@ export const fetchPageFromSlug = async (slug: string) => {
     `;
     const page = await fetchFromGraphQl(query);
     return page?.[collection]?.items?.[0];
+  } catch (e) {
+    return e;
+  }
+};
+
+export const fetchSiteInfo = async () => {
+  try {
+    const collection = SITE_INFO_COLLECTION;
+    const query = `query GetSiteInfo {
+                ${collection} {
+                    ${SITE_INFO_FIELDS}
+                }
+            }`;
+    const response = await fetchFromGraphQl(query);
+    const obj = response?.[collection]?.items?.[0];
+    const socialNetworks = obj?.[SOCIAL_NETWORKS_COLLECTION]?.items || [];
+    return {
+      name: obj.name,
+      url: obj.url,
+      phoneNumber: obj.phoneNumber,
+      email: obj.email,
+      socialNetworks,
+    };
   } catch (e) {
     return e;
   }

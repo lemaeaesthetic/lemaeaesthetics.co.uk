@@ -30,7 +30,6 @@ const HeroHeader: React.FC<HeroHeaderProps> = ({
       <Picture
         src="/assets/images/model-standing.png"
         alt="Female model looking to the left"
-        width="25%"
         minWidth="200px"
         minHeight="300px"
       />

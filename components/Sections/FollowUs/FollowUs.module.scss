@@ -1,0 +1,12 @@
+.wrapper {
+  background-color: var(--pink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    margin-bottom: 0;
+    font-size: 18px;
+    color: #fff;
+  }
+}

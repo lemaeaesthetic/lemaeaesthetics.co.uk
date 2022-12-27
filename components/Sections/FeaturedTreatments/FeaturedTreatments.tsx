@@ -9,14 +9,12 @@ interface FeaturedTreatmentsSectionProps {
   style?: React.CSSProperties;
   id?: string;
   testId?: string;
-  treatments: any[];
 }
 
 const FeaturedTreatmentsSection: React.FC<FeaturedTreatmentsSectionProps> = ({
   testId,
   className,
   id,
-  treatments,
   style,
 }) => {
   return (
@@ -28,7 +26,7 @@ const FeaturedTreatmentsSection: React.FC<FeaturedTreatmentsSectionProps> = ({
     >
       <FeaturedTreatmentsIntro />
       <Container className={styles.slider}>
-        <FeaturedTreatmentsSlider treatments={treatments} />
+        <FeaturedTreatmentsSlider />
       </Container>
     </div>
   );

@@ -9,12 +9,23 @@ export const inputTypes = [
 ] as const;
 export type InputType = typeof inputTypes[number];
 
+export type InputOptions = {
+  min?: number;
+  max?: number;
+  minLength?: number;
+  maxLength?: number;
+};
+
 const TEXT_REGEX = /^[\w\d\s,()./*%$@£!_&-]+$/;
 const EMAIL_REGEX =
   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const NUMBER_REGEX = /^[.,\d-]+$/;
 
-const validate = <T,>(type: string, value: T): boolean => {
+const validate = <T,>(
+  type: string,
+  value: T,
+  options?: InputOptions
+): boolean => {
   let valid = false;
   if (type === "text") {
     valid = TEXT_REGEX.test(`${value}`);
@@ -30,20 +41,41 @@ const validate = <T,>(type: string, value: T): boolean => {
   }
   if (type === "number") {
     valid = NUMBER_REGEX.test(`${value}`);
+    if (options?.min && value < options.min) {
+      valid = false;
+    }
+    if (options?.max && value > options.max) {
+      valid = false;
+    }
+  }
+  if (options?.maxLength && `${value}`.length > options?.maxLength) {
+    valid = false;
+  }
+  if (options?.minLength && `${value}`.length < options?.minLength) {
+    valid = false;
   }
   return valid;
 };
 
-const useInput = <T,>(type: InputType, defaultValue: T) => {
-  const [value, setValue] = useState<T>(defaultValue);
+const useInput = <T,>(
+  type: InputType,
+  defaultValue: T,
+  value?: T,
+  options?: InputOptions
+) => {
+  const [internalValue, setInternalValue] = useState<T>(value || defaultValue);
   const [isValid, setIsValid] = useState<boolean>();
+  const [isDirty, setIsDirty] = useState<boolean>(false);
 
   const handleInput: ChangeEventHandler<HTMLInputElement> = (
     event: ChangeEvent<HTMLInputElement>
   ) => {
     const newValue = event.currentTarget.value as T;
-    setValue(newValue);
-    if (validate<T>(type, newValue)) {
+    setInternalValue(newValue);
+    if (!isDirty) {
+      setIsDirty(true);
+    }
+    if (validate<T>(type, newValue, options)) {
       setIsValid(true);
     } else {
       setIsValid(false);
@@ -51,14 +83,14 @@ const useInput = <T,>(type: InputType, defaultValue: T) => {
   };
 
   const handleBlur = () => {
-    if (validate<T>(type, value)) {
+    if (validate<T>(type, internalValue, options)) {
       setIsValid(true);
     } else {
       setIsValid(false);
     }
   };
 
-  return { handleInput, handleBlur, value, isValid };
+  return { handleInput, handleBlur, value: internalValue, isValid, isDirty };
 };
 
 export { useInput };

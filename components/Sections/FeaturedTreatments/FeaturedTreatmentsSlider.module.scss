@@ -4,7 +4,8 @@
 
 .wrapper {
   position: relative;
-  padding-top: 0;
+
+  padding: 0;
 }
 
 .slider-inner {
@@ -20,7 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 24px;
+  padding: 24px 0;
 }
 
 .nav {

@@ -3,6 +3,8 @@ import styles from "components/Sections/FeaturedTreatments/FeaturedTreatmentsSli
 import { Container } from "components/Base/Container";
 import { useSwipe } from "hooks/useSwipe";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import { useAppSelector } from "services/redux/hooks";
+import { selectTreatments } from "services/redux/treatmentsSlice";
 import { TreatmentCard } from "./TreatmentCard";
 
 interface FeaturedTreatmentsSliderProps {
@@ -10,7 +12,6 @@ interface FeaturedTreatmentsSliderProps {
   style?: React.CSSProperties;
   id?: string;
   testId?: string;
-  treatments: any[];
 }
 
 const FeaturedTreatmentsSlider: React.FC<FeaturedTreatmentsSliderProps> = ({
@@ -18,10 +19,9 @@ const FeaturedTreatmentsSlider: React.FC<FeaturedTreatmentsSliderProps> = ({
   className,
   id,
   style,
-  treatments,
 }) => {
   const [activeSlide, setActiveSlide] = useState(0);
-
+  const treatments = useAppSelector(selectTreatments());
   const handleSwipeLeft = () => {
     if (activeSlide === 0) return;
     setActiveSlide(activeSlide - 1);
@@ -37,8 +37,6 @@ const FeaturedTreatmentsSlider: React.FC<FeaturedTreatmentsSliderProps> = ({
   );
   // Change styles.component
   const classes = `${className ? `className ` : ""}${styles.wrapper}`;
-
-  console.log(treatments);
 
   return (
     <Container data-testid={testId} className={classes} id={id} style={style}>

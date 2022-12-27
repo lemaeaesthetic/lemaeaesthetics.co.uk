@@ -21,13 +21,11 @@ const useSwipe = <T extends HTMLElement>(
   const handleTouchEnd = (event: any) => {
     if (currentTouch && initialTouch && initialTouch - currentTouch < -50) {
       leftCallback(event);
-      console.log("left");
     } else if (
       currentTouch &&
       initialTouch &&
       initialTouch - currentTouch > 50
     ) {
-      console.log("right");
       rightCallback(event);
     }
     event.currentTarget.removeEventListener("touchmove", handleTouchMove);
@@ -41,14 +39,12 @@ const useSwipe = <T extends HTMLElement>(
 
   const handlePointerUp = (event: any) => {
     if (currentTouch && initialTouch && initialTouch - currentTouch < -50) {
-      console.log("left");
       leftCallback(event);
     } else if (
       currentTouch &&
       initialTouch &&
       initialTouch - currentTouch > 50
     ) {
-      console.log("right");
       rightCallback(event);
     }
     event.currentTarget.removeEventListener("mousemove", handleMouseMove);

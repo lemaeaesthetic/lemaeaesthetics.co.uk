@@ -8,3 +8,10 @@
   z-index: 9;
   padding: var(--small);
 }
+.nav-logo {
+  height: 50px;
+  width: 100px;
+  img {
+    object-fit: contain;
+  }
+}
