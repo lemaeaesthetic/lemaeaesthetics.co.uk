@@ -3,7 +3,6 @@ import {
   MouseEventHandler,
   TouchEventHandler,
   TouchEvent,
-  useState,
 } from "react";
 import { isTouchDevice } from "utils/identifiers";
 
@@ -11,7 +10,7 @@ const useSwipe = <T extends HTMLElement>(
   leftCallback: any,
   rightCallback: any
 ) => {
-  const [isTouching, setIsTouching] = useState(false);
+  let isTouching = false;
   let initialTouch: number | undefined;
   let currentTouch: number | undefined;
 
@@ -20,16 +19,18 @@ const useSwipe = <T extends HTMLElement>(
   };
 
   const handleTouchEnd = (event: any) => {
-    setIsTouching(false);
-    if (currentTouch && initialTouch && initialTouch - currentTouch < -50) {
+    isTouching = false;
+    if (currentTouch && initialTouch && initialTouch - currentTouch < 0) {
       leftCallback(event);
     } else if (
       currentTouch &&
       initialTouch &&
-      initialTouch - currentTouch > 50
+      initialTouch - currentTouch > 0
     ) {
       rightCallback(event);
     }
+    initialTouch = undefined;
+    currentTouch = undefined;
     event.currentTarget.removeEventListener("touchmove", handleTouchMove);
     event.currentTarget.removeEventListener("touchend", handleTouchEnd);
   };
@@ -39,26 +40,25 @@ const useSwipe = <T extends HTMLElement>(
   };
 
   const handleMouseUp = (event: any) => {
-    if (currentTouch && initialTouch && initialTouch - currentTouch < -50) {
+    if (currentTouch && initialTouch && initialTouch - currentTouch < 0) {
       leftCallback(event);
     } else if (
       currentTouch &&
       initialTouch &&
-      initialTouch - currentTouch > 50
+      initialTouch - currentTouch > 0
     ) {
       rightCallback(event);
     }
     event.currentTarget.removeEventListener("mousemove", handleMouseMove);
     event.currentTarget.removeEventListener("mouseup", handleMouseUp);
-    setIsTouching(false);
+    isTouching = false;
   };
 
   const handleTouchStart: TouchEventHandler<T> = (event: TouchEvent<T>) => {
     if (!isTouchDevice()) return;
     if (isTouching) return;
-    setIsTouching(true);
+    isTouching = true;
     initialTouch = event.touches[0].clientX;
-    currentTouch = event.touches[0].clientX;
     event.currentTarget.addEventListener("touchmove", handleTouchMove);
     event.currentTarget.addEventListener("touchend", handleTouchEnd);
   };
@@ -66,7 +66,7 @@ const useSwipe = <T extends HTMLElement>(
   const handleMouseDown: MouseEventHandler<T> = (event: MouseEvent<T>) => {
     if (isTouchDevice()) return;
     if (isTouching) return;
-    setIsTouching(true);
+    isTouching = true;
     initialTouch = event.clientX;
     currentTouch = event.clientX;
     event.currentTarget.addEventListener("mousemove", handleMouseMove);
