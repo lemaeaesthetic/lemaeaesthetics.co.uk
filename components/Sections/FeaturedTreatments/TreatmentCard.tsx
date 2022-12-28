@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "components/Sections/FeaturedTreatments/TreatmentCard.module.scss";
-import { Picture } from "components/Base/Picture";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Anchor } from "components/Base/Anchor";
 
@@ -26,10 +25,9 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
       className={`${className ? `${className} ` : ""}${styles.wrapper}`}
       id={id}
     >
-      <Picture
-        alt={treatment.name}
-        src={treatment.image.url}
+      <div
         className={styles.image}
+        style={{ backgroundImage: `url(${treatment.image.url})` }}
       />
       {treatment.name}
       {documentToReactComponents(treatment.content.json)}
