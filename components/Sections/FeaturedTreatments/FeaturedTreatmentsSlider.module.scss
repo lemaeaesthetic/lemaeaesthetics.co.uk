@@ -13,6 +13,7 @@
   flex-wrap: nowrap;
   flex-basis: 100%;
   transition: transform 0.3s ease-in-out;
+  touch-action: none;
 }
 
 .slide {

@@ -1,6 +1,6 @@
 import {
-  PointerEvent,
-  PointerEventHandler,
+  MouseEvent,
+  MouseEventHandler,
   TouchEventHandler,
   TouchEvent,
   useState,
@@ -38,7 +38,7 @@ const useSwipe = <T extends HTMLElement>(
     currentTouch = event.clientX;
   };
 
-  const handlePointerUp = (event: any) => {
+  const handleMouseUp = (event: any) => {
     if (currentTouch && initialTouch && initialTouch - currentTouch < -50) {
       leftCallback(event);
     } else if (
@@ -49,7 +49,7 @@ const useSwipe = <T extends HTMLElement>(
       rightCallback(event);
     }
     event.currentTarget.removeEventListener("mousemove", handleMouseMove);
-    event.currentTarget.removeEventListener("pointerup", handlePointerUp);
+    event.currentTarget.removeEventListener("mouseup", handleMouseUp);
     setIsTouching(false);
   };
 
@@ -63,21 +63,19 @@ const useSwipe = <T extends HTMLElement>(
     event.currentTarget.addEventListener("touchend", handleTouchEnd);
   };
 
-  const handlePointerdown: PointerEventHandler<T> = (
-    event: PointerEvent<T>
-  ) => {
+  const handleMouseDown: MouseEventHandler<T> = (event: MouseEvent<T>) => {
     if (isTouchDevice()) return;
     if (isTouching) return;
     setIsTouching(true);
     initialTouch = event.clientX;
     currentTouch = event.clientX;
     event.currentTarget.addEventListener("mousemove", handleMouseMove);
-    event.currentTarget.addEventListener("pointerup", handlePointerUp);
+    event.currentTarget.addEventListener("mouseup", handleMouseUp);
   };
 
   return {
     handleTouchStart,
-    handlePointerdown,
+    handleMouseDown,
   };
 };
 

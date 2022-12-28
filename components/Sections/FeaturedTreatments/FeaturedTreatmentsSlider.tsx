@@ -31,7 +31,7 @@ const FeaturedTreatmentsSlider: React.FC<FeaturedTreatmentsSliderProps> = ({
     setActiveSlide(activeSlide + 1);
   };
 
-  const { handlePointerdown, handleTouchStart } = useSwipe<HTMLDivElement>(
+  const { handleMouseDown, handleTouchStart } = useSwipe<HTMLDivElement>(
     handleSwipeLeft,
     handleSwipeRight
   );
@@ -41,8 +41,10 @@ const FeaturedTreatmentsSlider: React.FC<FeaturedTreatmentsSliderProps> = ({
   return (
     <Container data-testid={testId} className={classes} id={id} style={style}>
       <div
+        tabIndex={0}
+        role="listbox"
         onTouchStart={handleTouchStart}
-        onPointerDown={handlePointerdown}
+        onMouseDown={handleMouseDown}
         className={styles["slider-inner"]}
         style={{
           transform: `translateX(calc(100% - calc(${activeSlide + 1} * 100%)))`,
