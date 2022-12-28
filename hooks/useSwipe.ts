@@ -5,6 +5,7 @@ import {
   TouchEvent,
   useState,
 } from "react";
+import { isTouchDevice } from "utils/identifiers";
 
 const useSwipe = <T extends HTMLElement>(
   leftCallback: any,
@@ -19,6 +20,7 @@ const useSwipe = <T extends HTMLElement>(
   };
 
   const handleTouchEnd = (event: any) => {
+    setIsTouching(false);
     if (currentTouch && initialTouch && initialTouch - currentTouch < -50) {
       leftCallback(event);
     } else if (
@@ -30,7 +32,6 @@ const useSwipe = <T extends HTMLElement>(
     }
     event.currentTarget.removeEventListener("touchmove", handleTouchMove);
     event.currentTarget.removeEventListener("touchend", handleTouchEnd);
-    setIsTouching(false);
   };
 
   const handleMouseMove = (event: any) => {
@@ -53,6 +54,7 @@ const useSwipe = <T extends HTMLElement>(
   };
 
   const handleTouchStart: TouchEventHandler<T> = (event: TouchEvent<T>) => {
+    if (!isTouchDevice()) return;
     if (isTouching) return;
     setIsTouching(true);
     initialTouch = event.touches[0].clientX;
@@ -64,6 +66,7 @@ const useSwipe = <T extends HTMLElement>(
   const handlePointerdown: PointerEventHandler<T> = (
     event: PointerEvent<T>
   ) => {
+    if (isTouchDevice()) return;
     if (isTouching) return;
     setIsTouching(true);
     initialTouch = event.clientX;
