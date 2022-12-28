@@ -3,12 +3,14 @@ import styles from "components/Sections/Enquire/EnquireSection.module.scss"; // 
 import { Section } from "components/Base/Section";
 import { HeadingAndCopy } from "components/Base/HeadingAndCopy";
 import { BookingForm } from "components/BookingForm/BookingForm";
+import { PageSection } from "types/cms";
 
 interface EnquireSectionProps {
   className?: string;
   style?: React.CSSProperties;
   id?: string;
   testId?: string;
+  data: PageSection;
 }
 
 const EnquireSection: React.FC<EnquireSectionProps> = ({
@@ -16,6 +18,7 @@ const EnquireSection: React.FC<EnquireSectionProps> = ({
   className,
   id,
   style,
+  data,
 }) => {
   // Change styles.component
   const classes = `${className ? `className ` : ""}${styles.wrapper}`;
@@ -24,11 +27,8 @@ const EnquireSection: React.FC<EnquireSectionProps> = ({
   return (
     <Section data-testid={testId} style={style} className={classes} id={id}>
       <HeadingAndCopy
-        heading="Book a Consultation"
-        copy={[
-          "Add some content to say how long it will take to reply to the queries you receive.",
-          "You can also use this section to add information about the process just keep the information relevant.",
-        ]}
+        heading={data.heading || "Book a Consultation"}
+        copy={data.description || ""}
       />
       <BookingForm />
     </Section>

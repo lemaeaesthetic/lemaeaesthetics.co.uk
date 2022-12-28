@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "components/Sections/FeaturedTreatments/FeaturedTreatments.module.scss";
 import { Container } from "components/Base/Container";
+import { PageSection } from "types/cms";
 import { FeaturedTreatmentsIntro } from "./FeaturedTreatmentsIntro";
 import { FeaturedTreatmentsSlider } from "./FeaturedTreatmentsSlider";
 
@@ -9,6 +10,7 @@ interface FeaturedTreatmentsSectionProps {
   style?: React.CSSProperties;
   id?: string;
   testId?: string;
+  data: PageSection;
 }
 
 const FeaturedTreatmentsSection: React.FC<FeaturedTreatmentsSectionProps> = ({
@@ -16,6 +18,7 @@ const FeaturedTreatmentsSection: React.FC<FeaturedTreatmentsSectionProps> = ({
   className,
   id,
   style,
+  data,
 }) => {
   return (
     <div
@@ -24,7 +27,12 @@ const FeaturedTreatmentsSection: React.FC<FeaturedTreatmentsSectionProps> = ({
       className={`${className ? `${className} ` : ""}${styles.wrapper}`}
       id={id}
     >
-      <FeaturedTreatmentsIntro />
+      <FeaturedTreatmentsIntro
+        heading={data.heading}
+        description={data.description}
+        linkUrl={data.linkUrl}
+        linkLabel={data.linkLabel}
+      />
       <Container className={styles.slider}>
         <FeaturedTreatmentsSlider />
       </Container>

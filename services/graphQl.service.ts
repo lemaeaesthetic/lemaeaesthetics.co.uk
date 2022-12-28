@@ -1,6 +1,7 @@
 import {
   NAVIGATION_COLLECTION,
   PAGE_COLLECTION,
+  SECTION_COLLECTION,
   SERVICE_COLLECTION,
   SITE_INFO_COLLECTION,
   SOCIAL_NETWORKS_COLLECTION,
@@ -8,10 +9,11 @@ import {
 import {
   ALL_NAV_FIELDS,
   ALL_PAGE_FIELDS,
+  ALL_SECTION_FIELDS,
   ALL_SERVICE_FIELDS,
   SITE_INFO_FIELDS,
 } from "config/data/queryField.data";
-import { Navigation } from "types/cms";
+import { Navigation, SectionId } from "types/cms";
 
 export const fetchFromGraphQl = async (query: string) => {
   const req = await fetch(
@@ -98,7 +100,15 @@ export const fetchPageFromSlug = async (slug: string) => {
         }
     `;
     const page = await fetchFromGraphQl(query);
-    return page?.[collection]?.items?.[0];
+    const obj = page?.[collection]?.items?.[0];
+    if (!obj) return undefined;
+    obj.sections = obj?.[SECTION_COLLECTION]?.items
+      ? [...obj[SECTION_COLLECTION].items]
+      : [];
+    // tidy up
+    delete obj?.[SECTION_COLLECTION];
+
+    return obj;
   } catch (e) {
     return e;
   }
@@ -124,5 +134,19 @@ export const fetchSiteInfo = async () => {
     };
   } catch (e) {
     return e;
+  }
+};
+
+export const fetchSectionFromId = async (id: SectionId) => {
+  const collection = SECTION_COLLECTION;
+  const query = `${collection} (where: { id: "${id}"}, limit: 1) {
+    ${ALL_SECTION_FIELDS}
+  }`;
+  try {
+    const req = await fetchFromGraphQl(query);
+    const res = req?.[collection]?.items?.[0];
+    return res || undefined;
+  } catch (e) {
+    return undefined;
   }
 };

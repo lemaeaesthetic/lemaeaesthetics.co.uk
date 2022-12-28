@@ -1,4 +1,7 @@
-import { SOCIAL_NETWORKS_COLLECTION } from "./collection.data";
+import {
+  SECTION_COLLECTION,
+  SOCIAL_NETWORKS_COLLECTION,
+} from "./collection.data";
 
 export const ALL_SERVICE_FIELDS = `items {
     slug
@@ -23,15 +26,6 @@ export const ALL_NAV_FIELDS = `items {
     }
 }`;
 
-export const ALL_PAGE_FIELDS = `items {
-    title
-    slug
-    label
-    content {
-        json
-    }
-}`;
-
 export const SOCIAL_NETWORK_FIELDS = `items {
     profileUrl
     label
@@ -45,5 +39,25 @@ export const SITE_INFO_FIELDS = `items {
     email
     ${SOCIAL_NETWORKS_COLLECTION} {
         ${SOCIAL_NETWORK_FIELDS}
+    }
+}`;
+
+export const ALL_SECTION_FIELDS = `items {
+    id
+    heading
+    description
+    linkUrl
+    linkLabel
+}`;
+
+export const ALL_PAGE_FIELDS = `items {
+    title
+    slug
+    label
+    content {
+        json
+    }
+    ${SECTION_COLLECTION} {
+        ${ALL_SECTION_FIELDS}
     }
 }`;

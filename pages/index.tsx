@@ -36,10 +36,38 @@ const Home: NextPage = () => {
       <main>
         <NavMenu />
         <Header type="hero" />
-        <FeaturedTreatmentsSection />
-        <AboutUsSection />
-        <FollowUs />
-        <EnquireSection />
+        {pageData?.sections.map((section) => {
+          if (section.id === "Enquire") {
+            return (
+              <EnquireSection
+                key={Math.random().toString(36).substring(2, 9)}
+                data={section}
+              />
+            );
+          }
+          if (section.id === "Treatments") {
+            return (
+              <FeaturedTreatmentsSection
+                key={Math.random().toString(36).substring(2, 9)}
+                data={section}
+              />
+            );
+          }
+          if (section.id === "Follow Us") {
+            return (
+              <FollowUs key={Math.random().toString(36).substring(2, 9)} />
+            );
+          }
+          if (section.id === "About") {
+            return (
+              <AboutUsSection
+                data={section}
+                key={Math.random().toString(36).substring(2, 9)}
+              />
+            );
+          }
+          return null;
+        })}
         <Footer />
       </main>
       <footer />

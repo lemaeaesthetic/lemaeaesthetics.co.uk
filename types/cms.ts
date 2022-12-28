@@ -7,6 +7,14 @@ export interface CmsImage {
 export const SOCIAL_NETWORKS = ["TWITTER", "FACEBOOK", "INSTAGRAM"] as const;
 export type SocialNetwork = typeof SOCIAL_NETWORKS[number];
 
+export const sectionIds = [
+  "Enquire",
+  "Treatments",
+  "About",
+  "Follow Us",
+] as const;
+export type SectionId = typeof sectionIds[number];
+
 export interface SocialProfile {
   profileUrl: string;
   label: string;
@@ -48,6 +56,14 @@ export const isNavigation = (toCheck: any): toCheck is Navigation =>
   Object.hasOwn(toCheck, "type") &&
   Object.hasOwn(toCheck, "showServices");
 
+export type PageSection = {
+  id: SectionId;
+  heading: string;
+  description: string;
+  linkUrl?: string;
+  linkLabel?: string;
+};
+
 export interface Page {
   title: string;
   slug: string;
@@ -58,4 +74,5 @@ export interface Page {
   seoTitle?: string;
   seoDescription?: string;
   seoKeywords?: string[];
+  sections: PageSection[];
 }

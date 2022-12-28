@@ -7,3 +7,5 @@ export const SERVICE_COLLECTION = "serviceCollection";
 export const SITE_INFO_COLLECTION = "infoCollection";
 
 export const SOCIAL_NETWORKS_COLLECTION = "socialNetworksCollection";
+
+export const SECTION_COLLECTION = "sectionsCollection";
