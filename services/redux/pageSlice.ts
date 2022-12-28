@@ -10,6 +10,7 @@ const initialState: Page = {
   image: {
     url: "",
   },
+  sections: [],
 };
 
 const typedHydrateAction = createAction<AppState>(HYDRATE);

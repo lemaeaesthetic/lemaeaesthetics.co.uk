@@ -10,6 +10,7 @@ export type SocialNetwork = typeof SOCIAL_NETWORKS[number];
 export const sectionIds = [
   "Enquire",
   "Treatments",
+  "Hero Header",
   "About",
   "Follow Us",
 ] as const;
@@ -56,6 +57,14 @@ export const isNavigation = (toCheck: any): toCheck is Navigation =>
   Object.hasOwn(toCheck, "type") &&
   Object.hasOwn(toCheck, "showServices");
 
+export type HeroHeaderSection = {
+  id: SectionId;
+  heading: string;
+  image: CmsImage;
+  linkUrl?: string;
+  linkLabel?: string;
+};
+
 export type PageSection = {
   id: SectionId;
   heading: string;
@@ -74,5 +83,5 @@ export interface Page {
   seoTitle?: string;
   seoDescription?: string;
   seoKeywords?: string[];
-  sections: PageSection[];
+  sections: (PageSection | HeroHeaderSection)[];
 }

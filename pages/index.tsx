@@ -17,7 +17,7 @@ import { wrapper } from "services/redux/store";
 import { setTreatments } from "services/redux/treatmentsSlice";
 import { FollowUs } from "components/Sections/FollowUs/FollowUs";
 import { setNavigation } from "services/redux/navigationSlice";
-import { isNavigation } from "types/cms";
+import { HeroHeaderSection, isNavigation, PageSection } from "types/cms";
 import { selectPage, setPage } from "services/redux/pageSlice";
 import { useAppSelector } from "services/redux/hooks";
 import { Footer } from "components/Footer/Footer";
@@ -35,13 +35,21 @@ const Home: NextPage = () => {
       />
       <main>
         <NavMenu />
-        <Header type="hero" />
         {pageData?.sections.map((section) => {
           if (section.id === "Enquire") {
             return (
               <EnquireSection
                 key={Math.random().toString(36).substring(2, 9)}
-                data={section}
+                data={section as PageSection}
+              />
+            );
+          }
+          if (section.id === "Hero Header") {
+            return (
+              <Header
+                type="hero"
+                key={Math.random().toString(36).substring(2, 9)}
+                data={section as HeroHeaderSection}
               />
             );
           }
@@ -49,7 +57,7 @@ const Home: NextPage = () => {
             return (
               <FeaturedTreatmentsSection
                 key={Math.random().toString(36).substring(2, 9)}
-                data={section}
+                data={section as PageSection}
               />
             );
           }
@@ -61,7 +69,7 @@ const Home: NextPage = () => {
           if (section.id === "About") {
             return (
               <AboutUsSection
-                data={section}
+                data={section as PageSection}
                 key={Math.random().toString(36).substring(2, 9)}
               />
             );

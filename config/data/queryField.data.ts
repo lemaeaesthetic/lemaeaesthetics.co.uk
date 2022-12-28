@@ -42,12 +42,22 @@ export const SITE_INFO_FIELDS = `items {
     }
 }`;
 
-export const ALL_SECTION_FIELDS = `items {
+export const ALL_SECTION_FIELDS = `... on Section {
     id
     heading
     description
     linkUrl
     linkLabel
+}`;
+
+export const ALL_HEADER_SECTION_FIELDS = `... on HeroHeaderSection {
+    id
+    linkUrl
+    linkLabel
+    heading
+    image {
+      url
+    }
 }`;
 
 export const ALL_PAGE_FIELDS = `items {
@@ -57,7 +67,11 @@ export const ALL_PAGE_FIELDS = `items {
     content {
         json
     }
-    ${SECTION_COLLECTION} {
-        ${ALL_SECTION_FIELDS}
+    ${SECTION_COLLECTION} (limit: 10) {
+        items {
+            __typename
+            ${ALL_HEADER_SECTION_FIELDS}
+            ${ALL_SECTION_FIELDS}
+        }
     }
 }`;

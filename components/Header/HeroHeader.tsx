@@ -1,4 +1,4 @@
-import { Button } from "components/Base/Button";
+import { Anchor } from "components/Base/Anchor";
 import { Picture } from "components/Base/Picture";
 import React from "react";
 import styles from "./HeroHeader.module.scss";
@@ -8,6 +8,9 @@ interface HeroHeaderProps {
   style?: React.CSSProperties;
   id?: string;
   title?: string;
+  imageSrc?: string;
+  linkLabel?: string;
+  linkUrl?: string;
 }
 
 const HeroHeader: React.FC<HeroHeaderProps> = ({
@@ -15,6 +18,9 @@ const HeroHeader: React.FC<HeroHeaderProps> = ({
   className,
   id,
   style,
+  imageSrc,
+  linkLabel,
+  linkUrl,
 }) => {
   return (
     <header
@@ -26,10 +32,15 @@ const HeroHeader: React.FC<HeroHeaderProps> = ({
       <div className={styles["inner-wrap"]}>
         <div>
           <h1>{title}</h1>
-          <Button type="button" label="See our Treatments" onClick={() => {}} />
+          <Anchor
+            className={styles.cta}
+            label={linkLabel || "See our Treatments"}
+            href={linkUrl || "/treatments"}
+            title={linkLabel || "View our treatments"}
+          />
         </div>
         <Picture
-          src="/assets/images/model-standing.png"
+          src={imageSrc || ""}
           alt="Female model looking to the left"
           minWidth="200px"
           minHeight="300px"
@@ -43,7 +54,10 @@ HeroHeader.defaultProps = {
   className: undefined,
   style: undefined,
   id: undefined,
+  linkLabel: undefined,
+  linkUrl: undefined,
   title: "These are words about your business",
+  imageSrc: "/assets/images/model-standing.png",
 };
 
 export { HeroHeader };

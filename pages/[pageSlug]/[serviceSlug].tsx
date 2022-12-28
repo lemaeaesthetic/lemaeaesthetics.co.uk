@@ -2,7 +2,7 @@ import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import pages from "config/data/page.data";
 import { Meta } from "components/Meta/Meta";
-import { Header } from "components/Header/Header";
+
 import { NavMenu } from "components/Navigation/NavMenu";
 import { fetchMainNav, fetchServiceFromSlug } from "services/graphQl.service";
 
@@ -18,7 +18,6 @@ const ServicePage: NextPage = (props: any) => {
       />
       <main>
         <NavMenu />
-        <Header type="hero" />
       </main>
       <footer />
     </div>

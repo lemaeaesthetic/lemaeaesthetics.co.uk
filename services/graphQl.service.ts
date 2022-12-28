@@ -98,7 +98,7 @@ export const fetchPageFromSlug = async (slug: string) => {
                 ${ALL_PAGE_FIELDS}
             }
         }
-    `;
+        `;
     const page = await fetchFromGraphQl(query);
     const obj = page?.[collection]?.items?.[0];
     if (!obj) return undefined;
