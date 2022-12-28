@@ -76,7 +76,7 @@ export const fetchServiceFromSlug = async (slug: string) => {
   try {
     const collection = SERVICE_COLLECTION;
     const query = `
-            query GetPageFromSlug {
+            query GetServiceFromSlug {
                 ${collection} (where: {slug:"${slug}"}, limit: 1) {
                     ${ALL_SERVICE_FIELDS}
                 }

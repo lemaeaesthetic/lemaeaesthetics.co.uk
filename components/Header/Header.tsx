@@ -1,5 +1,5 @@
 import React from "react";
-import { HeroHeaderSection } from "types/cms";
+import { GenericHeaderSection, HeroHeaderSection } from "types/cms";
 import { BasicHeader } from "./BasicHeader";
 import { HeroHeader } from "./HeroHeader";
 
@@ -11,7 +11,7 @@ interface HeaderProps {
   style?: React.CSSProperties;
   id?: string;
   type: HeaderType;
-  data: HeroHeaderSection;
+  data: HeroHeaderSection | GenericHeaderSection;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -22,7 +22,14 @@ const Header: React.FC<HeaderProps> = ({
   data,
 }) => {
   if (type === "normal") {
-    return <BasicHeader className={className} id={id} style={style} />;
+    return (
+      <BasicHeader
+        className={className}
+        id={id}
+        style={style}
+        heading={data.heading}
+      />
+    );
   }
   if (type === "hero") {
     return (
@@ -31,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({
         id={id}
         style={style}
         title={data.heading}
-        imageSrc={data.image.url}
+        imageSrc={(data as HeroHeaderSection).image.url}
       />
     );
   }

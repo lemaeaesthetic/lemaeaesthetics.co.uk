@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "components/Sections/FeaturedTreatments/TreatmentCard.module.scss";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Anchor } from "components/Base/Anchor";
+import { Treatment } from "types/cms";
 
 interface TreatmentCardProps {
   className?: string;
   style?: React.CSSProperties;
   id?: string;
   testId?: string;
-  treatment: any;
+  treatment: Treatment;
 }
 
 const TreatmentCard: React.FC<TreatmentCardProps> = ({
@@ -30,7 +30,7 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
         style={{ backgroundImage: `url(${treatment.image.url})` }}
       />
       {treatment.name}
-      {documentToReactComponents(treatment.content.json)}
+      <p>{treatment.description}</p>
       <Anchor
         href={`/treatments/${treatment.slug}`}
         label="More Info"

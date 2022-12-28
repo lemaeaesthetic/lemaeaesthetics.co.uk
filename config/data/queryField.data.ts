@@ -6,9 +6,7 @@ import {
 export const ALL_SERVICE_FIELDS = `items {
     slug
     name
-    content {
-        json
-    }
+    description
     image {
         url
     }

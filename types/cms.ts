@@ -32,7 +32,7 @@ export interface Info {
 
 export interface Treatment {
   name: string;
-  content: Document;
+  description: string;
   image: CmsImage;
   slug: string;
 }
@@ -63,6 +63,10 @@ export type HeroHeaderSection = {
   image: CmsImage;
   linkUrl?: string;
   linkLabel?: string;
+};
+
+export type GenericHeaderSection = {
+  heading: string;
 };
 
 export type PageSection = {
