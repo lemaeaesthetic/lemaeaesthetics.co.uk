@@ -17,6 +17,7 @@ import { setTreatments } from "services/redux/treatmentsSlice";
 import { setNavigation } from "services/redux/navigationSlice";
 import { setInfo } from "services/redux/siteInfoSlice";
 import { wrapper } from "services/redux/store";
+import { Footer } from "components/Footer/Footer";
 
 const GenericPage: NextPage = () => {
   const pageData = useAppSelector(selectPage());
@@ -31,6 +32,7 @@ const GenericPage: NextPage = () => {
       <main>
         <NavMenu />
         <Sections sections={pageData.sections} />
+        <Footer />
       </main>
       <footer />
     </div>

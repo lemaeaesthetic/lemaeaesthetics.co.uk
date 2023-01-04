@@ -67,6 +67,7 @@ const Sections: React.FC<SectionsProps> = ({
             return (
               <TreatmentsGrid
                 key={Math.random().toString(36).substring(2, 9)}
+                data={section as GenericPageSection}
               />
             );
           case "Follow Us":

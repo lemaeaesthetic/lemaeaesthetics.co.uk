@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
   flex-wrap: wrap;
-  max-width: 900px;
   margin: var(--large) auto;
   > div {
     width: 50%;
@@ -10,20 +9,14 @@
   }
 }
 
-.slider {
-  overflow: hidden;
-}
-
-.slider-inner {
+.grid {
   display: flex;
-  flex-wrap: nowrap;
-  flex-basis: 100%;
-  transition: transform 0.3s ease-in-out;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.slide {
+.tile {
   flex-shrink: 0;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

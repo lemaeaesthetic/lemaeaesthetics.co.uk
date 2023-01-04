@@ -1,7 +1,7 @@
 import React from "react";
 import { HeadingAndCopy } from "components/Base/HeadingAndCopy";
 
-interface FeaturedTreatmentsIntroProps {
+interface TreatmentsGridIntroProps {
   className?: string;
   style?: React.CSSProperties;
   id?: string;
@@ -12,7 +12,7 @@ interface FeaturedTreatmentsIntroProps {
   description: string;
 }
 
-const FeaturedTreatmentsIntro: React.FC<FeaturedTreatmentsIntroProps> = ({
+const TreatmentsGridIntro: React.FC<TreatmentsGridIntroProps> = ({
   testId,
   className,
   id,
@@ -41,7 +41,7 @@ const FeaturedTreatmentsIntro: React.FC<FeaturedTreatmentsIntroProps> = ({
   );
 };
 
-FeaturedTreatmentsIntro.defaultProps = {
+TreatmentsGridIntro.defaultProps = {
   className: undefined,
   style: undefined,
   id: undefined,
@@ -50,4 +50,4 @@ FeaturedTreatmentsIntro.defaultProps = {
   linkUrl: undefined,
 };
 
-export { FeaturedTreatmentsIntro };
+export { TreatmentsGridIntro };
