@@ -1,2 +1,25 @@
 .wrapper {
+  width: 100%;
+  min-width: 100%;
+  justify-content: space-evenly;
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 24px;
+  flex-direction: column;
+  @media screen and (min-width: 844px) {
+    flex-direction: row;
+  }
+
+  > div {
+    align-self: center;
+    @media screen and (min-width: 844px) {
+      margin-right: 24px;
+    }
+  }
+}
+
+.copy-wrapper {
+  width: 50%;
+  flex-grow: 1;
 }

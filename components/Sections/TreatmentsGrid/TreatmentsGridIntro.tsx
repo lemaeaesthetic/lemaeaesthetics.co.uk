@@ -1,5 +1,7 @@
 import React from "react";
 import { HeadingAndCopy } from "components/Base/HeadingAndCopy";
+import { TreatmentCard } from "./TreatmentCard";
+import styles from "./TreatmentsGridIntro.module.scss";
 
 interface TreatmentsGridIntroProps {
   className?: string;
@@ -10,6 +12,7 @@ interface TreatmentsGridIntroProps {
   linkUrl?: string;
   heading: string;
   description: string;
+  featuredTreatment: any;
 }
 
 const TreatmentsGridIntro: React.FC<TreatmentsGridIntroProps> = ({
@@ -21,23 +24,30 @@ const TreatmentsGridIntro: React.FC<TreatmentsGridIntroProps> = ({
   linkUrl,
   heading,
   description,
+  featuredTreatment,
 }) => {
-  const copy =
-    "This is some random text about your treatments. Things like, our treatments are top tits.You probably want a couple lines, and not much more.";
+  const classes = className ? `${className} ${styles.wrapper}` : styles.wrapper;
   return (
-    <HeadingAndCopy
-      testId={testId}
-      className={className}
-      id={id}
-      style={style}
-      copy={description || copy}
-      heading={heading || "Our Treatments"}
-      link={{
-        label: linkLabel || "View all",
-        href: linkUrl || "/treatments",
-        title: linkLabel || "View all of our treatments",
-      }}
-    />
+    <div className={classes}>
+      <HeadingAndCopy
+        testId={testId}
+        className={styles["copy-wrapper"]}
+        id={id}
+        style={style}
+        copy={description || ""}
+        heading={heading || "Our Treatments"}
+        link={
+          linkLabel && linkUrl
+            ? {
+                label: linkLabel || "View all",
+                href: linkUrl || "/treatments",
+                title: linkLabel || "View all of our treatments",
+              }
+            : undefined
+        }
+      />
+      <TreatmentCard treatment={featuredTreatment} />
+    </div>
   );
 };
 

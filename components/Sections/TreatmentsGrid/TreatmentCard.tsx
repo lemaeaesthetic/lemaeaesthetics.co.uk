@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "components/Sections/FeaturedTreatments/TreatmentCard.module.scss";
 import { Anchor } from "components/Base/Anchor";
 import { Treatment } from "types/cms";
+import styles from "./TreatmentCard.module.scss";
 
 interface TreatmentCardProps {
   className?: string;

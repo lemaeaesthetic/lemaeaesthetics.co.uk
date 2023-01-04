@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Section.module.scss";
 
 interface SectionProps {
   className?: string;
@@ -15,8 +16,9 @@ const Section: React.FC<SectionProps> = ({
   style,
   children,
 }) => {
+  const classes = className ? `${className} ${styles.wrapper}` : styles.wrapper;
   return (
-    <section style={style} className={className} id={id} data-testid={testId}>
+    <section style={style} className={classes} id={id} data-testid={testId}>
       {children}
     </section>
   );

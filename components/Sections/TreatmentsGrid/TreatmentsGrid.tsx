@@ -3,6 +3,7 @@ import { Container } from "components/Base/Container";
 import { GenericPageSection } from "types/cms";
 import { selectTreatments } from "services/redux/treatmentsSlice";
 import { useAppSelector } from "services/redux/hooks";
+import { Section } from "components/Base/Section";
 import styles from "./TreatmentsGrid.module.scss";
 import { TreatmentsGridIntro } from "./TreatmentsGridIntro";
 import { TreatmentCard } from "./TreatmentCard";
@@ -24,7 +25,7 @@ const TreatmentsGrid: React.FC<TreatmentsGridProps> = ({
 }) => {
   const treatments = useAppSelector(selectTreatments());
   return (
-    <div
+    <Section
       data-testid={testId}
       style={style}
       className={`${className ? `${className} ` : ""}${styles.wrapper}`}
@@ -36,10 +37,12 @@ const TreatmentsGrid: React.FC<TreatmentsGridProps> = ({
           description={data.description}
           linkUrl={data.linkUrl}
           linkLabel={data.linkLabel}
+          featuredTreatment={treatments[0]}
         />
       ) : null}
       <Container className={styles.grid}>
-        {treatments.map((treatment: any) => {
+        {treatments.map((treatment: any, i: number) => {
+          if (i === 0 && data.heading && data.description) return null;
           return (
             <div
               className={styles.tile}
@@ -50,7 +53,7 @@ const TreatmentsGrid: React.FC<TreatmentsGridProps> = ({
           );
         })}
       </Container>
-    </div>
+    </Section>
   );
 };
 
