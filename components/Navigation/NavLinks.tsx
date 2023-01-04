@@ -57,6 +57,7 @@ const NavLinks = forwardRef<HTMLDivElement, NavLinksProps>((props, ref) => {
               title={link.title}
               className={styles["nav-link"]}
               key={Math.random().toString(36).substring(2, 9)}
+              closeCallback={props.closeCallback}
             />
           ))}
         </List>

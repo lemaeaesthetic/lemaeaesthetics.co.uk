@@ -2,7 +2,6 @@ import React from "react";
 import type { NextPage } from "next";
 import pages from "config/data/page.data";
 import { Meta } from "components/Meta/Meta";
-import { Header } from "components/Header/Header";
 import { NavMenu } from "components/Navigation/NavMenu";
 import {
   fetchAllServices,
@@ -10,18 +9,15 @@ import {
   fetchPageFromSlug,
   fetchSiteInfo,
 } from "services/graphQl.service";
-import { FeaturedTreatmentsSection } from "components/Sections/FeaturedTreatments/FeaturedTreatments";
-import { AboutUsSection } from "components/Sections/AboutUs/AboutUs";
-import { EnquireSection } from "components/Sections/Enquire/EnquireSection";
 import { wrapper } from "services/redux/store";
 import { setTreatments } from "services/redux/treatmentsSlice";
-import { FollowUs } from "components/Sections/FollowUs/FollowUs";
 import { setNavigation } from "services/redux/navigationSlice";
-import { HeroHeaderSection, isNavigation, PageSection } from "types/cms";
+import { isNavigation } from "types/cms";
 import { selectPage, setPage } from "services/redux/pageSlice";
 import { useAppSelector } from "services/redux/hooks";
 import { Footer } from "components/Footer/Footer";
 import { setInfo } from "services/redux/siteInfoSlice";
+import { Sections } from "components/Sections/Sections";
 
 const Home: NextPage = () => {
   const pageData = useAppSelector(selectPage());
@@ -35,47 +31,7 @@ const Home: NextPage = () => {
       />
       <main>
         <NavMenu />
-        {pageData?.sections.map((section) => {
-          if (section.id === "Enquire") {
-            return (
-              <EnquireSection
-                key={Math.random().toString(36).substring(2, 9)}
-                data={section as PageSection}
-              />
-            );
-          }
-          if (section.id === "Hero Header") {
-            return (
-              <Header
-                type="hero"
-                key={Math.random().toString(36).substring(2, 9)}
-                data={section as HeroHeaderSection}
-              />
-            );
-          }
-          if (section.id === "Treatments") {
-            return (
-              <FeaturedTreatmentsSection
-                key={Math.random().toString(36).substring(2, 9)}
-                data={section as PageSection}
-              />
-            );
-          }
-          if (section.id === "Follow Us") {
-            return (
-              <FollowUs key={Math.random().toString(36).substring(2, 9)} />
-            );
-          }
-          if (section.id === "About") {
-            return (
-              <AboutUsSection
-                data={section as PageSection}
-                key={Math.random().toString(36).substring(2, 9)}
-              />
-            );
-          }
-          return null;
-        })}
+        <Sections sections={pageData.sections} />
         <Footer />
       </main>
       <footer />

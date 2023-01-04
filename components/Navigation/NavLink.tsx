@@ -7,6 +7,7 @@ interface NavLinkProps extends AnchorProps {
   className?: string;
   style?: React.CSSProperties;
   id?: string;
+  closeCallback: any;
 }
 
 const NavLink: React.FC<NavLinkProps> = ({
@@ -14,6 +15,7 @@ const NavLink: React.FC<NavLinkProps> = ({
   id,
   style,
   href,
+  closeCallback,
   title,
   label,
 }) => {
@@ -23,7 +25,15 @@ const NavLink: React.FC<NavLinkProps> = ({
       className={`${styles.wrapper} ${className}`}
       id={id}
     >
-      <Anchor href={href} title={title} label={label} className={styles.link} />
+      <Anchor
+        onClick={() => {
+          closeCallback();
+        }}
+        href={`/${href}`}
+        title={title}
+        label={label}
+        className={styles.link}
+      />
     </ListItem>
   );
 };

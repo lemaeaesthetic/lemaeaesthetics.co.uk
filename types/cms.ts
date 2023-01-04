@@ -10,7 +10,9 @@ export type SocialNetwork = typeof SOCIAL_NETWORKS[number];
 export const sectionIds = [
   "Enquire",
   "Treatments",
+  "Treatments Grid",
   "Hero Header",
+  "Generic Header",
   "About",
   "Follow Us",
 ] as const;
@@ -67,9 +69,10 @@ export type HeroHeaderSection = {
 
 export type GenericHeaderSection = {
   heading: string;
+  description?: string;
 };
 
-export type PageSection = {
+export type GenericPageSection = {
   id: SectionId;
   heading: string;
   description: string;
@@ -87,5 +90,5 @@ export interface Page {
   seoTitle?: string;
   seoDescription?: string;
   seoKeywords?: string[];
-  sections: (PageSection | HeroHeaderSection)[];
+  sections: (GenericPageSection | HeroHeaderSection)[];
 }

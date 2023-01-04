@@ -21,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({
   type,
   data,
 }) => {
+  console.log(data);
   if (type === "normal") {
     return (
       <BasicHeader
@@ -28,6 +29,7 @@ const Header: React.FC<HeaderProps> = ({
         id={id}
         style={style}
         heading={data.heading}
+        copy={(data as GenericHeaderSection)?.description}
       />
     );
   }

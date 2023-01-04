@@ -14,6 +14,7 @@ export interface AnchorProps {
   testId?: string;
   underline?: boolean;
   children?: React.ReactNode;
+  onClick?: any;
 }
 
 const Anchor: React.FC<AnchorProps> = ({
@@ -28,6 +29,7 @@ const Anchor: React.FC<AnchorProps> = ({
   style,
   underline,
   children,
+  onClick,
 }) => {
   return (
     <Link
@@ -41,6 +43,7 @@ const Anchor: React.FC<AnchorProps> = ({
       target={target}
       data-testid={testId}
       rel={rel}
+      onClick={onClick}
     >
       {children || label}
     </Link>
@@ -56,6 +59,7 @@ Anchor.defaultProps = {
   testId: undefined,
   underline: true,
   children: undefined,
+  onClick: undefined,
 };
 
 export { Anchor };

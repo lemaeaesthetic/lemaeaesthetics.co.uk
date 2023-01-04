@@ -40,12 +40,24 @@ export const SITE_INFO_FIELDS = `items {
     }
 }`;
 
-export const ALL_SECTION_FIELDS = `... on Section {
+export const BASE_SECTION_FIELDS = `
     id
     heading
     description
     linkUrl
     linkLabel
+`;
+
+export const ALL_SECTION_FIELDS = `... on Section {
+${BASE_SECTION_FIELDS}
+}`;
+
+export const ALL_GENERIC_HEADER_FIELDS = `... on GenericHeader {
+${BASE_SECTION_FIELDS}
+}`;
+
+export const ALL_TREATMENTS_GRID_FIELDS = `... on TreatmentsGrid {
+${BASE_SECTION_FIELDS}
 }`;
 
 export const ALL_HEADER_SECTION_FIELDS = `... on HeroHeaderSection {
@@ -70,6 +82,8 @@ export const ALL_PAGE_FIELDS = `items {
             __typename
             ${ALL_HEADER_SECTION_FIELDS}
             ${ALL_SECTION_FIELDS}
+            ${ALL_TREATMENTS_GRID_FIELDS}
+            ${ALL_GENERIC_HEADER_FIELDS}
         }
     }
 }`;
