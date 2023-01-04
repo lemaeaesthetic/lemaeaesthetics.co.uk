@@ -5,6 +5,7 @@ import { AboutUsSection } from "./AboutUs/AboutUs";
 import { EnquireSection } from "./Enquire/EnquireSection";
 import { FeaturedTreatmentsSection } from "./FeaturedTreatments/FeaturedTreatments";
 import { FollowUs } from "./FollowUs/FollowUs";
+import { TreatmentsGrid } from "./TreatmentsGrid/TreatmentsGrid";
 
 interface SectionsProps {
   className?: string;
@@ -60,6 +61,12 @@ const Sections: React.FC<SectionsProps> = ({
               <FeaturedTreatmentsSection
                 key={Math.random().toString(36).substring(2, 9)}
                 data={section as GenericPageSection}
+              />
+            );
+          case "Treatments Grid":
+            return (
+              <TreatmentsGrid
+                key={Math.random().toString(36).substring(2, 9)}
               />
             );
           case "Follow Us":
