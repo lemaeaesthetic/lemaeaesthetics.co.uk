@@ -29,7 +29,7 @@ const Sections: React.FC<SectionsProps> = ({
             return (
               <EnquireSection
                 key={Math.random().toString(36).substring(2, 9)}
-                data={section}
+                data={section as GenericPageSection}
               />
             );
           case "Hero Header":
@@ -51,7 +51,7 @@ const Sections: React.FC<SectionsProps> = ({
           case "About":
             return (
               <AboutUsSection
-                data={section}
+                data={section as GenericPageSection}
                 key={Math.random().toString(36).substring(2, 9)}
               />
             );
@@ -59,7 +59,7 @@ const Sections: React.FC<SectionsProps> = ({
             return (
               <FeaturedTreatmentsSection
                 key={Math.random().toString(36).substring(2, 9)}
-                data={section}
+                data={section as GenericPageSection}
               />
             );
           case "Follow Us":

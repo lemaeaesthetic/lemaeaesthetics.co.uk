@@ -3,14 +3,14 @@ import styles from "components/Sections/Enquire/EnquireSection.module.scss"; // 
 import { Section } from "components/Base/Section";
 import { HeadingAndCopy } from "components/Base/HeadingAndCopy";
 import { BookingForm } from "components/BookingForm/BookingForm";
-import { PageSection } from "types/cms";
+import { GenericPageSection } from "types/cms";
 
 interface EnquireSectionProps {
   className?: string;
   style?: React.CSSProperties;
   id?: string;
   testId?: string;
-  data: PageSection;
+  data: GenericPageSection;
 }
 
 const EnquireSection: React.FC<EnquireSectionProps> = ({

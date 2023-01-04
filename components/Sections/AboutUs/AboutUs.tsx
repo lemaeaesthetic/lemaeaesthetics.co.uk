@@ -3,14 +3,14 @@ import styles from "components/Sections/AboutUs/AboutUs.module.scss";
 import { Section } from "components/Base/Section";
 import { HeadingAndCopy } from "components/Base/HeadingAndCopy";
 import { PictureWithCaption } from "components/Base/PictureWithCaption";
-import { PageSection } from "types/cms";
+import { GenericPageSection } from "types/cms";
 
 interface AboutUsSectionProps {
   className?: string;
   style?: React.CSSProperties;
   id?: string;
   testId?: string;
-  data: PageSection;
+  data: GenericPageSection;
 }
 
 const AboutUsSection: React.FC<AboutUsSectionProps> = ({

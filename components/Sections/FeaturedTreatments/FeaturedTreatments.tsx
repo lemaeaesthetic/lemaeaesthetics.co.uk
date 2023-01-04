@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "components/Sections/FeaturedTreatments/FeaturedTreatments.module.scss";
 import { Container } from "components/Base/Container";
-import { PageSection } from "types/cms";
+import { GenericPageSection } from "types/cms";
 import { FeaturedTreatmentsIntro } from "./FeaturedTreatmentsIntro";
 import { FeaturedTreatmentsSlider } from "./FeaturedTreatmentsSlider";
 
@@ -10,7 +10,7 @@ interface FeaturedTreatmentsSectionProps {
   style?: React.CSSProperties;
   id?: string;
   testId?: string;
-  data: PageSection;
+  data: GenericPageSection;
 }
 
 const FeaturedTreatmentsSection: React.FC<FeaturedTreatmentsSectionProps> = ({
