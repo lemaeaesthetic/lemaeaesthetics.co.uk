@@ -7,27 +7,14 @@ import { selectPage } from "services/redux/pageSlice";
 import { useAppSelector } from "services/redux/hooks";
 import { Footer } from "components/Footer/Footer";
 import { Sections } from "components/Sections/Sections";
-import { PAGE_COLLECTION } from "config/data/collection.data";
-import { ALL_PAGE_FIELDS } from "config/data/queryField.data";
-
-const collection = PAGE_COLLECTION;
-const query = `
-    query GetPageFromSlug {
-        ${collection} (where: {slug:"not-found"}, limit: 1) {
-            ${ALL_PAGE_FIELDS}
-        }
-    }
-    `;
+import { fetchPageFromSlug } from "services/graphQl.service";
 
 const NotFound: NextPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const page = await fetch("/api/v1/fetch", {
-          body: JSON.stringify({ query }),
-          method: "POST",
-        });
-        console.log(await page.json());
+        const page = await fetchPageFromSlug("not-found", true);
+        console.log(page);
       } catch (e) {
         console.log(e);
       }

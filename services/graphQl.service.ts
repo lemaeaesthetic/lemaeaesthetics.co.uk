@@ -14,10 +14,11 @@ import {
   SITE_INFO_FIELDS,
 } from "config/data/queryField.data";
 import { Navigation, SectionId } from "types/cms";
+import { fetchPageFromApi } from "./api.service";
 
 export const fetchFromGraphQl = async (query: string) => {
   const req = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/${process.env.NEXT_PUBLIC_SPACE_ID}/environments/master`,
+    `${process.env.API_BASE_URL}/${process.env.SPACE_ID}/environments/master`,
     {
       method: "POST",
       headers: {
@@ -103,11 +104,7 @@ export const fetchPageFromSlug = async (
         `;
     const page = !useBackend
       ? await fetchFromGraphQl(query)
-      : await fetch("/api/v1/fetch", {
-          body: JSON.stringify({ query }),
-          method: "POST",
-        });
-    console.log(page);
+      : await fetchPageFromApi(query);
     const obj = page?.[collection]?.items?.[0];
     if (!obj) return undefined;
     obj.sections = obj?.[SECTION_COLLECTION]?.items
