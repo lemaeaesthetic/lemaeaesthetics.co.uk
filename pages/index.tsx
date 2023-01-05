@@ -46,6 +46,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       const nav = await fetchMainNav();
       const services = await fetchAllServices();
       const siteInfo = await fetchSiteInfo();
+      console.log(page);
       if (!page || !services || !isNavigation(nav) || !siteInfo)
         return { notFound: true };
       store.dispatch(setTreatments(services));

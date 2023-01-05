@@ -1,4 +1,4 @@
-import { Document } from "@contentful/rich-text-types";
+import { Document, NodeData } from "@contentful/rich-text-types";
 
 export interface CmsImage {
   url: string;
@@ -15,6 +15,7 @@ export const sectionIds = [
   "Generic Header",
   "About",
   "Follow Us",
+  "Content Section",
 ] as const;
 export type SectionId = typeof sectionIds[number];
 
@@ -72,6 +73,12 @@ export type GenericHeaderSection = {
   description?: string;
 };
 
+export type ContentSection = {
+  id: SectionId;
+  heading?: string;
+  content: NodeData;
+};
+
 export type GenericPageSection = {
   id: SectionId;
   heading: string;
@@ -90,5 +97,5 @@ export interface Page {
   seoTitle?: string;
   seoDescription?: string;
   seoKeywords?: string[];
-  sections: (GenericPageSection | HeroHeaderSection)[];
+  sections: (GenericPageSection | HeroHeaderSection | ContentSection)[];
 }

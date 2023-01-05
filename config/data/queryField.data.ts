@@ -52,14 +52,6 @@ export const ALL_SECTION_FIELDS = `... on Section {
 ${BASE_SECTION_FIELDS}
 }`;
 
-export const ALL_GENERIC_HEADER_FIELDS = `... on GenericHeader {
-${BASE_SECTION_FIELDS}
-}`;
-
-export const ALL_TREATMENTS_GRID_FIELDS = `... on TreatmentsGrid {
-${BASE_SECTION_FIELDS}
-}`;
-
 export const ALL_HEADER_SECTION_FIELDS = `... on HeroHeaderSection {
     id
     linkUrl
@@ -67,6 +59,14 @@ export const ALL_HEADER_SECTION_FIELDS = `... on HeroHeaderSection {
     heading
     image {
       url
+    }
+}`;
+
+export const ALL_CONTENT_SECTION_FIELDS = `... on ContentSection {
+    id
+    heading
+    content { 
+        json
     }
 }`;
 
@@ -82,8 +82,7 @@ export const ALL_PAGE_FIELDS = `items {
             __typename
             ${ALL_HEADER_SECTION_FIELDS}
             ${ALL_SECTION_FIELDS}
-            ${ALL_TREATMENTS_GRID_FIELDS}
-            ${ALL_GENERIC_HEADER_FIELDS}
+            ${ALL_CONTENT_SECTION_FIELDS}
         }
     }
 }`;

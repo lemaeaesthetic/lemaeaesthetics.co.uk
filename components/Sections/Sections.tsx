@@ -1,7 +1,12 @@
 import { Header } from "components/Header/Header";
 import React from "react";
-import { HeroHeaderSection, GenericPageSection } from "types/cms";
+import {
+  HeroHeaderSection,
+  GenericPageSection,
+  ContentSection,
+} from "types/cms";
 import { AboutUsSection } from "./AboutUs/AboutUs";
+import { Content } from "./Content/Content";
 import { EnquireSection } from "./Enquire/EnquireSection";
 import { FeaturedTreatmentsSection } from "./FeaturedTreatments/FeaturedTreatments";
 import { FollowUs } from "./FollowUs/FollowUs";
@@ -12,7 +17,7 @@ interface SectionsProps {
   style?: React.CSSProperties;
   id?: string;
   testId?: string;
-  sections: (GenericPageSection | HeroHeaderSection)[];
+  sections: (GenericPageSection | HeroHeaderSection | ContentSection)[];
 }
 
 const Sections: React.FC<SectionsProps> = ({
@@ -38,7 +43,7 @@ const Sections: React.FC<SectionsProps> = ({
               <Header
                 type="hero"
                 key={Math.random().toString(36).substring(2, 9)}
-                data={section}
+                data={section as HeroHeaderSection}
               />
             );
           case "Generic Header":
@@ -46,7 +51,7 @@ const Sections: React.FC<SectionsProps> = ({
               <Header
                 type="normal"
                 key={Math.random().toString(36).substring(2, 9)}
-                data={section}
+                data={section as GenericPageSection}
               />
             );
           case "About":
@@ -68,6 +73,13 @@ const Sections: React.FC<SectionsProps> = ({
               <TreatmentsGrid
                 key={Math.random().toString(36).substring(2, 9)}
                 data={section as GenericPageSection}
+              />
+            );
+          case "Content Section":
+            return (
+              <Content
+                key={Math.random().toString(36).substring(2, 9)}
+                data={section as ContentSection}
               />
             );
           case "Follow Us":

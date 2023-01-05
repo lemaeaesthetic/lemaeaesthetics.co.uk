@@ -21,6 +21,7 @@ import { Footer } from "components/Footer/Footer";
 
 const GenericPage: NextPage = () => {
   const pageData = useAppSelector(selectPage());
+  console.log(pageData);
   return (
     <div>
       <Meta

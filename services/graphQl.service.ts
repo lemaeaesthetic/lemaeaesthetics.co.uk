@@ -17,7 +17,7 @@ import { Navigation, SectionId } from "types/cms";
 
 export const fetchFromGraphQl = async (query: string) => {
   const req = await fetch(
-    `${process.env.API_BASE_URL}/${process.env.SPACE_ID}/environments/master`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/${process.env.NEXT_PUBLIC_SPACE_ID}/environments/master`,
     {
       method: "POST",
       headers: {
@@ -27,7 +27,6 @@ export const fetchFromGraphQl = async (query: string) => {
       body: JSON.stringify({ query }),
     }
   );
-
   const res = await req.json();
   return res?.data;
 };
@@ -89,7 +88,10 @@ export const fetchServiceFromSlug = async (slug: string) => {
   }
 };
 
-export const fetchPageFromSlug = async (slug: string) => {
+export const fetchPageFromSlug = async (
+  slug: string,
+  useBackend: boolean = false
+) => {
   try {
     const collection = PAGE_COLLECTION;
     const query = `
@@ -99,7 +101,13 @@ export const fetchPageFromSlug = async (slug: string) => {
             }
         }
         `;
-    const page = await fetchFromGraphQl(query);
+    const page = !useBackend
+      ? await fetchFromGraphQl(query)
+      : await fetch("/api/v1/fetch", {
+          body: JSON.stringify({ query }),
+          method: "POST",
+        });
+    console.log(page);
     const obj = page?.[collection]?.items?.[0];
     if (!obj) return undefined;
     obj.sections = obj?.[SECTION_COLLECTION]?.items
