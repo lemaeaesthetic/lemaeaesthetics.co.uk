@@ -32,9 +32,9 @@ export const fetchFromGraphQl = async (query: string) => {
   return res?.data;
 };
 
-export const fetchMainNav = async (): Promise<
-  Navigation | undefined | unknown
-> => {
+export const fetchMainNav = async (
+  useBackend: boolean = false
+): Promise<Navigation | undefined | unknown> => {
   try {
     const collection = NAVIGATION_COLLECTION;
     const query = `query GetMainNav {
@@ -42,7 +42,9 @@ export const fetchMainNav = async (): Promise<
                 ${ALL_NAV_FIELDS}
             }
         }`;
-    const response = await fetchFromGraphQl(query);
+    const response = !useBackend
+      ? await fetchFromGraphQl(query)
+      : await fetchPageFromApi(query);
     const object = response?.[NAVIGATION_COLLECTION]?.items[0];
     if (!object) return undefined;
     return {
@@ -57,7 +59,7 @@ export const fetchMainNav = async (): Promise<
 
 export const fetchFooterNavEntries = () => {};
 
-export const fetchAllServices = async () => {
+export const fetchAllServices = async (useBackend: boolean = false) => {
   try {
     const collection = SERVICE_COLLECTION;
     const query = `query GetAllServices {
@@ -65,7 +67,9 @@ export const fetchAllServices = async () => {
                     ${ALL_SERVICE_FIELDS}
                 }
             }`;
-    const response = await fetchFromGraphQl(query);
+    const response = !useBackend
+      ? await fetchFromGraphQl(query)
+      : await fetchPageFromApi(query);
     return response?.[collection]?.items;
   } catch (e) {
     return e;
@@ -119,7 +123,7 @@ export const fetchPageFromSlug = async (
   }
 };
 
-export const fetchSiteInfo = async () => {
+export const fetchSiteInfo = async (useBackend: boolean = false) => {
   try {
     const collection = SITE_INFO_COLLECTION;
     const query = `query GetSiteInfo {
@@ -127,7 +131,9 @@ export const fetchSiteInfo = async () => {
                     ${SITE_INFO_FIELDS}
                 }
             }`;
-    const response = await fetchFromGraphQl(query);
+    const response = !useBackend
+      ? await fetchFromGraphQl(query)
+      : await fetchPageFromApi(query);
     const obj = response?.[collection]?.items?.[0];
     const socialNetworks = obj?.[SOCIAL_NETWORKS_COLLECTION]?.items || [];
     return {

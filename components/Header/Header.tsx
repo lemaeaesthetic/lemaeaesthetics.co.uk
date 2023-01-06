@@ -21,7 +21,6 @@ const Header: React.FC<HeaderProps> = ({
   type,
   data,
 }) => {
-  console.log(data);
   if (type === "normal") {
     return (
       <BasicHeader

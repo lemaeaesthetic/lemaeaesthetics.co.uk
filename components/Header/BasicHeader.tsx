@@ -19,7 +19,6 @@ const BasicHeader: React.FC<BasicHeaderProps> = ({
   copy,
 }) => {
   const classes = `${className ? `${className} ` : ""}${styles.wrapper}`;
-  console.log(heading);
   return (
     <div style={style} className={classes} id={id}>
       <Heading content={heading} level={1} />

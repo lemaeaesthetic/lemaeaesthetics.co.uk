@@ -1,37 +1,46 @@
 import React, { useEffect } from "react";
 import type { NextPage } from "next";
-import pages from "config/data/page.data";
-import { Meta } from "components/Meta/Meta";
 import { NavMenu } from "components/Navigation/NavMenu";
-import { selectPage } from "services/redux/pageSlice";
-import { useAppSelector } from "services/redux/hooks";
+import { useAppDispatch, useAppSelector } from "services/redux/hooks";
 import { Footer } from "components/Footer/Footer";
+import {
+  fetchAllServices,
+  fetchMainNav,
+  fetchPageFromSlug,
+  fetchSiteInfo,
+} from "services/graphQl.service";
+import { selectPage, setPage } from "services/redux/pageSlice";
+import { setNavigation } from "services/redux/navigationSlice";
+import { Info, Navigation, Treatment } from "types/cms";
 import { Sections } from "components/Sections/Sections";
-import { fetchPageFromSlug } from "services/graphQl.service";
+import { setInfo } from "services/redux/siteInfoSlice";
+import { setTreatments } from "services/redux/treatmentsSlice";
 
 const NotFound: NextPage = () => {
+  const dispatch = useAppDispatch();
   useEffect(() => {
     (async () => {
       try {
-        const page = await fetchPageFromSlug("not-found", true);
-        console.log(page);
+        const dataPage = await fetchPageFromSlug("not-found", true);
+        const nav = await fetchMainNav(true);
+        const siteInfo = await fetchSiteInfo(true);
+        const services = await fetchAllServices(true);
+        dispatch(setPage(dataPage));
+        dispatch(setNavigation(nav as Navigation));
+        dispatch(setInfo(siteInfo as Info));
+        dispatch(setTreatments(services as Treatment[]));
       } catch (e) {
         console.log(e);
       }
     })();
-  }, []);
-  const pageData = useAppSelector(selectPage());
+  }, [dispatch]);
+  const page = useAppSelector(selectPage());
+
   return (
     <div>
-      <Meta
-        title={pageData?.seoTitle || pageData.title}
-        description={pageData.seoDescription || ""}
-        favicon={pages.homePage.favicon}
-        url={`${process.env.NEXT_PUBLIC_BASE_URL}${pageData.slug}`}
-      />
       <main>
         <NavMenu />
-        <Sections sections={pageData.sections} />
+        <Sections sections={page.sections} />
         <Footer />
       </main>
       <footer />

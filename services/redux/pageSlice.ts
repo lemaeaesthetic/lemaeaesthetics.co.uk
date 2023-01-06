@@ -19,8 +19,8 @@ export const pageSlice = createSlice({
   name: "page",
   initialState,
   reducers: {
-    setPage: (state, action: PayloadAction<Page>) => {
-      return action.payload;
+    setPage: (state: any, { payload }: PayloadAction<Page>) => {
+      return payload;
     },
   },
   extraReducers: (builder) => {
