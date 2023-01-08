@@ -70,7 +70,16 @@ export const fetchAllServices = async (useBackend: boolean = false) => {
     const response = !useBackend
       ? await fetchFromGraphQl(query)
       : await fetchPageFromApi(query);
-    return response?.[collection]?.items;
+    // Sort galleries
+    const output =
+      response?.[collection]?.items?.map((item: any) => {
+        const temp = { ...item };
+        const gallery = temp.galleryCollection?.items || [];
+        temp.gallery = gallery;
+        delete temp?.galleryCollection;
+        return temp;
+      }) || [];
+    return output;
   } catch (e) {
     return e;
   }
@@ -86,8 +95,12 @@ export const fetchServiceFromSlug = async (slug: string) => {
                 }
             }
         `;
-    const page = await fetchFromGraphQl(query);
-    return page?.[collection]?.items?.[0];
+    const response = await fetchFromGraphQl(query);
+    const service = { ...response?.[collection]?.items?.[0] };
+    const gallery = service?.galleryCollection?.items || [];
+    service.gallery = gallery;
+    delete service?.galleryCollection;
+    return service;
   } catch (e) {
     return e;
   }
@@ -116,7 +129,6 @@ export const fetchPageFromSlug = async (
       : [];
     // tidy up
     delete obj?.[SECTION_COLLECTION];
-
     return obj;
   } catch (e) {
     return e;

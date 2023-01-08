@@ -2,7 +2,6 @@ import React from "react";
 import type { NextPage } from "next";
 import pages from "config/data/page.data";
 import { Meta } from "components/Meta/Meta";
-
 import { NavMenu } from "components/Navigation/NavMenu";
 import {
   fetchMainNav,
@@ -20,13 +19,15 @@ import { setNavigation } from "services/redux/navigationSlice";
 import { selectInfo, setInfo } from "services/redux/siteInfoSlice";
 import { useAppSelector } from "services/redux/hooks";
 import { Header } from "components/Header/Header";
-import { Sections } from "components/Sections/Sections";
-import { selectPage, setPage } from "services/redux/pageSlice";
+import { setPage } from "services/redux/pageSlice";
+import { Content } from "components/Sections/Content/Content";
+import { Footer } from "components/Footer/Footer";
+import { Gallery } from "components/Gallery/Gallery";
 
 const ServicePage: NextPage = () => {
   const [treatment] = useAppSelector(selectTreatments());
   const siteInfo = useAppSelector(selectInfo());
-  const pageData = useAppSelector(selectPage());
+  console.log(treatment);
   return (
     <div>
       <Meta
@@ -37,10 +38,19 @@ const ServicePage: NextPage = () => {
       />
       <main>
         <NavMenu />
-        <Header type="normal" data={{ heading: treatment.name }} />
-        <Sections sections={pageData.sections} />
+        <Header
+          type="pdp"
+          data={{
+            heading: treatment.name,
+            image: treatment.image,
+            price: treatment.price,
+            time: treatment.timeEstimate,
+          }}
+        />
+        <Content data={{ id: "Content Section", content: treatment.content }} />
+        <Gallery gallery={treatment.gallery} />
       </main>
-      <footer />
+      <Footer />
     </div>
   );
 };

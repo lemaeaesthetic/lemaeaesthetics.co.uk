@@ -40,7 +40,7 @@ const NotFound: NextPage = () => {
     <div>
       <main>
         <NavMenu />
-        <Sections sections={page.sections} />
+        <Sections sections={page.sections || []} />
         <Footer />
       </main>
       <footer />

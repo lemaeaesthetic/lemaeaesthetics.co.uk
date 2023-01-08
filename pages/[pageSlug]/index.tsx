@@ -33,9 +33,8 @@ const GenericPage: NextPage = () => {
       <main>
         <NavMenu />
         <Sections sections={pageData.sections} />
-        <Footer />
       </main>
-      <footer />
+      <Footer />
     </div>
   );
 };

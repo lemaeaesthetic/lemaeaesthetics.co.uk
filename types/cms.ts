@@ -2,6 +2,7 @@ import { Document, NodeData } from "@contentful/rich-text-types";
 
 export interface CmsImage {
   url: string;
+  alt: string;
 }
 
 export const SOCIAL_NETWORKS = ["TWITTER", "FACEBOOK", "INSTAGRAM"] as const;
@@ -38,6 +39,10 @@ export interface Treatment {
   description: string;
   image: CmsImage;
   slug: string;
+  price: number;
+  timeEstimate: number;
+  content: Document;
+  gallery: CmsImage[];
 }
 
 export const NAV_LOCATIONS = ["MAIN", "FOOTER"] as const;
@@ -72,6 +77,12 @@ export type GenericHeaderSection = {
   heading: string;
   description?: string;
 };
+
+export type PdpHeaderSection = {
+  image: CmsImage;
+  price: number;
+  time: number;
+} & GenericHeaderSection;
 
 export type ContentSection = {
   id: SectionId;

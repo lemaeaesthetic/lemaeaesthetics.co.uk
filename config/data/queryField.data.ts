@@ -7,8 +7,20 @@ export const ALL_SERVICE_FIELDS = `items {
     slug
     name
     description
+    price
+    timeEstimate
     image {
+        description
         url
+    }
+    content {
+        json
+    }
+    galleryCollection {
+        items {
+            url
+            description
+        }
     }
 }`;
 
@@ -58,7 +70,8 @@ export const ALL_HEADER_SECTION_FIELDS = `... on HeroHeaderSection {
     linkLabel
     heading
     image {
-      url
+        description
+        url
     }
 }`;
 

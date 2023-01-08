@@ -1,9 +1,14 @@
 import React from "react";
-import { GenericHeaderSection, HeroHeaderSection } from "types/cms";
+import {
+  GenericHeaderSection,
+  HeroHeaderSection,
+  PdpHeaderSection,
+} from "types/cms";
 import { BasicHeader } from "./BasicHeader";
 import { HeroHeader } from "./HeroHeader";
+import { PdpHeader } from "./PdpHeader";
 
-export const HeaderTypes = ["hero", "normal"] as const;
+export const HeaderTypes = ["hero", "normal", "pdp"] as const;
 export type HeaderType = typeof HeaderTypes[number];
 
 interface HeaderProps {
@@ -11,7 +16,7 @@ interface HeaderProps {
   style?: React.CSSProperties;
   id?: string;
   type: HeaderType;
-  data: HeroHeaderSection | GenericHeaderSection;
+  data: HeroHeaderSection | GenericHeaderSection | PdpHeaderSection;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -40,6 +45,20 @@ const Header: React.FC<HeaderProps> = ({
         style={style}
         title={data.heading}
         imageSrc={(data as HeroHeaderSection).image.url}
+      />
+    );
+  }
+  if (type === "pdp") {
+    const typedData = data as PdpHeaderSection;
+    return (
+      <PdpHeader
+        className={className}
+        id={id}
+        style={style}
+        heading={data.heading}
+        image={typedData.image}
+        time={typedData.time}
+        price={typedData.price}
       />
     );
   }
