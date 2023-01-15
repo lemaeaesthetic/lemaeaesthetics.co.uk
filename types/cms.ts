@@ -17,6 +17,7 @@ export const sectionIds = [
   "About",
   "Follow Us",
   "Content Section",
+  "Gallery Section",
 ] as const;
 export type SectionId = typeof sectionIds[number];
 
@@ -88,6 +89,13 @@ export type ContentSection = {
   id: SectionId;
   heading?: string;
   content: NodeData;
+};
+
+export type GallerySectionData = {
+  id: SectionId;
+  heading: string;
+  description: string;
+  gallery: CmsImage[];
 };
 
 export type GenericPageSection = {

@@ -1,0 +1,12 @@
+.wrapper {
+  margin: 72px auto;
+}
+.container {
+  max-width: 900px;
+  display: flex;
+  margin: auto;
+  flex-wrap: wrap;
+  > div {
+    flex-grow: 1;
+  }
+}

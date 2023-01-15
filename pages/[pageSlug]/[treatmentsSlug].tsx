@@ -22,7 +22,8 @@ import { Header } from "components/Header/Header";
 import { setPage } from "services/redux/pageSlice";
 import { Content } from "components/Sections/Content/Content";
 import { Footer } from "components/Footer/Footer";
-import { Gallery } from "components/Gallery/Gallery";
+import { EnquireSection } from "components/Sections/Enquire/EnquireSection";
+import { GallerySection } from "components/Sections/Gallery/GallerySection";
 
 const ServicePage: NextPage = () => {
   const [treatment] = useAppSelector(selectTreatments());
@@ -48,7 +49,21 @@ const ServicePage: NextPage = () => {
           }}
         />
         <Content data={{ id: "Content Section", content: treatment.content }} />
-        <Gallery gallery={treatment.gallery} />
+        <GallerySection
+          data={{
+            id: "Gallery Section",
+            heading: `${treatment.name}'s Gallery`,
+            description: `View our happy client who have had ${treatment.name} with us. `,
+            gallery: treatment.gallery,
+          }}
+        />
+        <EnquireSection
+          data={{
+            id: "Enquire",
+            heading: `Book ${treatment.name}`,
+            description: `Use the form below to book a call to discuss ${treatment.name}.`,
+          }}
+        />
       </main>
       <Footer />
     </div>

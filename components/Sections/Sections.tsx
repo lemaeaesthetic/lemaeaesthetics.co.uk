@@ -4,12 +4,14 @@ import {
   HeroHeaderSection,
   GenericPageSection,
   ContentSection,
+  GallerySectionData,
 } from "types/cms";
 import { AboutUsSection } from "./AboutUs/AboutUs";
 import { Content } from "./Content/Content";
 import { EnquireSection } from "./Enquire/EnquireSection";
 import { FeaturedTreatmentsSection } from "./FeaturedTreatments/FeaturedTreatments";
 import { FollowUs } from "./FollowUs/FollowUs";
+import { GallerySection } from "./Gallery/GallerySection";
 import { TreatmentsGrid } from "./TreatmentsGrid/TreatmentsGrid";
 
 interface SectionsProps {
@@ -80,6 +82,13 @@ const Sections: React.FC<SectionsProps> = ({
               <Content
                 key={Math.random().toString(36).substring(2, 9)}
                 data={section as ContentSection}
+              />
+            );
+          case "Gallery Section":
+            return (
+              <GallerySection
+                key={Math.random().toString(36).substring(2, 9)}
+                data={section as GallerySectionData}
               />
             );
           case "Follow Us":
