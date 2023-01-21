@@ -83,10 +83,7 @@ const BookingForm: React.FC<BookingFormProps> = ({
   style,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<Message | undefined>({
-    heading: "YO",
-    content: "JEUY",
-  });
+  const [message, setMessage] = useState<Message | undefined>();
   const classes = `${className ? `${className} ` : ""}${styles.wrapper}`;
   const treatments = useAppSelector(selectTreatments());
   const nameInput = useRef<HTMLInputElement>(null);
