@@ -1,9 +1,11 @@
 import { Button } from "components/Base/Button";
 import { Container } from "components/Base/Container";
 import { DateInput } from "components/Base/DateInput";
+import { Heading } from "components/Base/Heading";
 import { Input } from "components/Base/Input";
+import { Paragraph } from "components/Base/Paragraph";
 import { Select } from "components/Base/Select";
-import React, { useRef } from "react";
+import React, { RefObject, useRef, useState } from "react";
 import { useAppSelector } from "services/redux/hooks";
 import { selectTreatments } from "services/redux/treatmentsSlice";
 import styles from "./BookingForm.module.scss"; // Add scss module
@@ -69,12 +71,22 @@ const validateForm = (formData: FormData) => {
 
 type FieldValue = [FormDataEntryValue | null, string, string];
 
+type Message = {
+  heading: string;
+  content: string;
+};
+
 const BookingForm: React.FC<BookingFormProps> = ({
   testId,
   className,
   id,
   style,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState<Message | undefined>({
+    heading: "YO",
+    content: "JEUY",
+  });
   const classes = `${className ? `${className} ` : ""}${styles.wrapper}`;
   const treatments = useAppSelector(selectTreatments());
   const nameInput = useRef<HTMLInputElement>(null);
@@ -82,11 +94,21 @@ const BookingForm: React.FC<BookingFormProps> = ({
   const emailInput = useRef<HTMLInputElement>(null);
   const dateInput = useRef<HTMLInputElement>(null);
   const treatmentSelect = useRef<HTMLSelectElement>(null);
+  const underlayRef = useRef<HTMLSpanElement | undefined>();
+
+  const handleLoader = (override?: boolean) => {
+    underlayRef.current?.setAttribute(
+      "aria-hidden",
+      `${typeof override !== "undefined" ? override : !isLoading}`
+    );
+    setIsLoading(typeof override !== "undefined" ? override : !isLoading);
+  };
 
   const handleSubmission: React.FormEventHandler<HTMLFormElement> = async (
     event
   ) => {
     event.preventDefault();
+    handleLoader();
     const formData = new FormData(event.currentTarget);
     const validation = validateForm(formData);
     const errors = validation.filter((obj) => !obj.isValid);
@@ -108,6 +130,11 @@ const BookingForm: React.FC<BookingFormProps> = ({
           treatmentSelect.current.dataset.valid = "false";
         }
       });
+      setMessage({
+        heading: "Please check your data",
+        content:
+          "It looks like you may have incorrectly filled in the form. Please check the fields outlined in red and resubmit.",
+      });
     } else {
       try {
         const body = validation.reduce((output: any, current) => {
@@ -120,15 +147,52 @@ const BookingForm: React.FC<BookingFormProps> = ({
           body: JSON.stringify(body),
         });
         const res = await req.json();
-        console.log(res);
+        if (res.success) {
+          setMessage({
+            heading: "Booking sent",
+            content:
+              "Your booking has been sent and we will do our utmost to be in touch with you ASAP.",
+          });
+        } else {
+          setMessage({
+            heading: "Something went wrong",
+            content:
+              "Something seems to have gone wrong with your request. Please visit our contact page and give us a call.",
+          });
+        }
       } catch (e) {
-        console.log(e);
+        setMessage({
+          heading: "Something went wrong",
+          content:
+            "Something seems to have gone wrong with your request. Please visit our contact page and give us a call.",
+        });
       }
     }
+    setTimeout(() => {
+      handleLoader(false);
+    }, 1000);
   };
   // Alter render method
   return (
     <Container data-testid={testId} style={style} className={classes} id={id}>
+      <span
+        className={styles.underlay}
+        ref={underlayRef as RefObject<HTMLSpanElement>}
+        aria-hidden={!isLoading && typeof message === "undefined"}
+      />
+      <div
+        className={styles.message}
+        aria-hidden={
+          !(message && message.content.length > 0 && message.heading.length > 0)
+        }
+      >
+        <Heading level={4} content={message?.heading || ""} />
+
+        <Paragraph>{message?.content || ""}</Paragraph>
+        <Button onClick={() => setMessage(undefined)} type="button">
+          Close
+        </Button>
+      </div>
       <form onSubmit={handleSubmission}>
         <div className={styles["input-row"]}>
           <Input

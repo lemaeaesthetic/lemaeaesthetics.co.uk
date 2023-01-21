@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
+import SMTPTransport from "nodemailer/lib/smtp-transport";
 
 const TRANSPORT = nodemailer.createTransport({
   host: process.env.MAILER_HOST,
@@ -87,7 +88,7 @@ const constructMessage = (body: any) => {
   };
 };
 
-const sendMessage = (body: any) => {
+const sendMessage = (body: any): Promise<SMTPTransport.SentMessageInfo> => {
   const message = constructMessage(body);
   return new Promise((resolve, reject) => {
     // Send message
@@ -123,11 +124,22 @@ const Book: NextApiHandler = async (
       // Check nodemailer is all good
       await verifyNodeMailer();
       const result = await sendMessage(body);
-      console.log(result);
-      res.status(200).json({
-        success: true,
-        data: "YO",
-      });
+      if (/250 ok/gi.test(result?.response)) {
+        res.status(200).json({
+          success: true,
+          data: {
+            ...result,
+          },
+        });
+      } else {
+        res.status(401).json({
+          success: false,
+          data: {
+            message: "REQUEST_ERROR",
+            details: result.response,
+          },
+        });
+      }
     }
   } catch (e: ReturnType<Error>) {
     res.status(500).json({

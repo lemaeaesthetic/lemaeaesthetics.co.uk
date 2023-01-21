@@ -11,6 +11,7 @@ interface EnquireSectionProps {
   id?: string;
   testId?: string;
   data: GenericPageSection;
+  heading?: string;
 }
 
 const EnquireSection: React.FC<EnquireSectionProps> = ({
@@ -19,6 +20,7 @@ const EnquireSection: React.FC<EnquireSectionProps> = ({
   id,
   style,
   data,
+  heading,
 }) => {
   // Change styles.component
   const classes = `${className ? `className ` : ""}${styles.wrapper}`;
@@ -27,7 +29,7 @@ const EnquireSection: React.FC<EnquireSectionProps> = ({
   return (
     <Section data-testid={testId} style={style} className={classes} id={id}>
       <HeadingAndCopy
-        heading={data.heading || "Book a Consultation"}
+        heading={heading || data.heading || "Book a Consultation"}
         copy={data.description || ""}
       />
       <BookingForm />
@@ -40,6 +42,7 @@ EnquireSection.defaultProps = {
   style: undefined,
   id: undefined,
   testId: undefined,
+  heading: undefined,
 };
 
 export { EnquireSection };

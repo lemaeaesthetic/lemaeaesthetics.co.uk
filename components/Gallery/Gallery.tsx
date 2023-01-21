@@ -1,5 +1,5 @@
 import { Container } from "components/Base/Container";
-import { Picture } from "components/Base/Picture";
+
 import { Slider } from "components/Base/Slider";
 import React from "react";
 import { CmsImage } from "types/cms";
@@ -31,10 +31,9 @@ const Gallery: React.FC<GalleryProps> = ({
             key={Math.random().toString(36).substring(2, 9)}
             className={styles["slide-wrapper"]}
           >
-            <Picture
-              src={image.url}
-              alt={image.alt}
+            <div
               className={styles["slide-inner"]}
+              style={{ backgroundImage: `url("${image.url}")` }}
             />
           </div>
         ))}

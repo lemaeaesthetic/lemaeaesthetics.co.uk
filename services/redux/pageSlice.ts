@@ -9,6 +9,7 @@ const initialState: Page = {
   label: "",
   image: {
     url: "",
+    alt: "",
   },
   sections: [],
 };
