@@ -6,7 +6,7 @@ import type { AppState } from "./store";
 const initialState: Info = {
   name: "",
   email: "",
-  phone: "",
+  phoneNumber: "",
   url: "",
 };
 

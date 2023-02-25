@@ -30,7 +30,7 @@ export interface SocialProfile {
 export interface Info {
   name: string;
   url: string;
-  phone: string;
+  phoneNumber: string;
   email: string;
   socialNetworks?: SocialProfile[];
 }

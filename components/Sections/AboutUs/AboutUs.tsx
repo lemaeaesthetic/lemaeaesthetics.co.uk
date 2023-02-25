@@ -27,6 +27,7 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = ({
   return (
     <Section data-testid={testId} style={style} className={classes} id={id}>
       <HeadingAndCopy
+        className={styles["text-wrapper"]}
         heading={data.heading || "About Us"}
         copy={data.description || ""}
         link={{

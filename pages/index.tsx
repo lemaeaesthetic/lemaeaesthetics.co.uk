@@ -18,11 +18,13 @@ import { useAppSelector } from "services/redux/hooks";
 import { Footer } from "components/Footer/Footer";
 import { setInfo } from "services/redux/siteInfoSlice";
 import { Sections } from "components/Sections/Sections";
+import { Schema } from "components/Base/Schema";
 
 const Home: NextPage = () => {
   const pageData = useAppSelector(selectPage());
   return (
     <div>
+      <Schema />
       <Meta
         title={pageData?.seoTitle || pageData.title}
         description={pageData.seoDescription || ""}
@@ -46,7 +48,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
       const nav = await fetchMainNav();
       const services = await fetchAllServices();
       const siteInfo = await fetchSiteInfo();
-      console.log(page);
       if (!page || !services || !isNavigation(nav) || !siteInfo)
         return { notFound: true };
       store.dispatch(setTreatments(services));
