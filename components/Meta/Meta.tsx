@@ -39,6 +39,7 @@ export const Meta: React.FC<MetaProps> = ({
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content={siteInfo.name} />
       <link rel="icon" href={favicon} />
+      <link rel="icon" sizes="150x150" href="/apple-icon.png" />
       <link rel="apple-touch-icon" href="/apple-icon.png" />
       {keywords ? <meta name="keywords" content={keywords.join(", ")} /> : null}
     </Head>
