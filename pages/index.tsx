@@ -22,6 +22,7 @@ import { Schema } from "components/Base/Schema";
 
 const Home: NextPage = () => {
   const pageData = useAppSelector(selectPage());
+
   return (
     <div>
       <Schema />
@@ -30,6 +31,7 @@ const Home: NextPage = () => {
         description={pageData.seoDescription || ""}
         favicon={pages.homePage.favicon}
         url={`${process.env.NEXT_PUBLIC_BASE_URL}${pageData.slug}`}
+        image={pageData.socialShareImage?.url || pageData.image.url}
       />
       <main>
         <NavMenu />

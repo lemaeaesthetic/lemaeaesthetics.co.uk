@@ -154,6 +154,9 @@ export const fetchSiteInfo = async (useBackend: boolean = false) => {
       phoneNumber: obj.phoneNumber,
       email: obj.email,
       socialNetworks,
+      address: obj.address,
+      image: obj.image,
+      priceRange: obj.priceRange,
     };
   } catch (e) {
     return e;

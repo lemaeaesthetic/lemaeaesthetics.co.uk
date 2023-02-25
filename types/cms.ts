@@ -33,6 +33,9 @@ export interface Info {
   phoneNumber: string;
   email: string;
   socialNetworks?: SocialProfile[];
+  image: CmsImage;
+  address: string;
+  priceRange: string;
 }
 
 export interface Treatment {

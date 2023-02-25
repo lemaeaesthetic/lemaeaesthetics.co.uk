@@ -28,7 +28,7 @@ import { GallerySection } from "components/Sections/Gallery/GallerySection";
 const ServicePage: NextPage = () => {
   const [treatment] = useAppSelector(selectTreatments());
   const siteInfo = useAppSelector(selectInfo());
-  console.log(treatment);
+
   return (
     <div>
       <Meta
@@ -36,6 +36,7 @@ const ServicePage: NextPage = () => {
         description={treatment.description}
         favicon={pages.homePage.favicon}
         url={pages.homePage.slug}
+        image={treatment.image.url}
       />
       <main>
         <NavMenu />

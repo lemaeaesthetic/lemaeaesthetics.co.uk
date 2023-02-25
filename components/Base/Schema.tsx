@@ -14,6 +14,9 @@ const Schema: React.FC<SchemaProps> = () => {
       url: siteInfo.url,
       telephone: siteInfo.phoneNumber,
       email: siteInfo.email,
+      image: siteInfo?.image?.url,
+      address: siteInfo.address,
+      priceRange: siteInfo.priceRange,
     }),
   });
   return (

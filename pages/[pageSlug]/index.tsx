@@ -18,17 +18,19 @@ import { setNavigation } from "services/redux/navigationSlice";
 import { setInfo } from "services/redux/siteInfoSlice";
 import { wrapper } from "services/redux/store";
 import { Footer } from "components/Footer/Footer";
+import { Schema } from "components/Base/Schema";
 
 const GenericPage: NextPage = () => {
   const pageData = useAppSelector(selectPage());
-  console.log(pageData);
   return (
     <div>
+      <Schema />
       <Meta
-        title={pages.homePage.title}
-        description={pages.homePage.description}
+        title={pageData?.seoTitle || pageData.title}
+        description={pageData.seoDescription || ""}
         favicon={pages.homePage.favicon}
-        url={pages.homePage.slug}
+        url={`${process.env.NEXT_PUBLIC_BASE_URL}${pageData.slug}`}
+        image={pageData.socialShareImage?.url || pageData.image.url}
       />
       <main>
         <NavMenu />

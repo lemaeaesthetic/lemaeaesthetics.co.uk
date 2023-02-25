@@ -8,6 +8,12 @@ const initialState: Info = {
   email: "",
   phoneNumber: "",
   url: "",
+  address: "",
+  priceRange: "",
+  image: {
+    url: "",
+    alt: "",
+  },
 };
 
 const typedHydrateAction = createAction<AppState>(HYDRATE);

@@ -47,6 +47,11 @@ export const SITE_INFO_FIELDS = `items {
     url
     phoneNumber
     email
+    address
+    priceRange
+    image {
+        url
+    }
     ${SOCIAL_NETWORKS_COLLECTION} {
         ${SOCIAL_NETWORK_FIELDS}
     }
@@ -87,8 +92,21 @@ export const ALL_PAGE_FIELDS = `items {
     title
     slug
     label
+    seoTitle
+    seoDescription
+    seoKeywords
+    socialShareImage {
+        url
+        title
+        description
+    }
     content {
         json
+    }
+    image {
+        url
+        title
+        description
     }
     ${SECTION_COLLECTION} (limit: 10) {
         items {
