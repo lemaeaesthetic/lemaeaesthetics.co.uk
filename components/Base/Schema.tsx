@@ -7,14 +7,14 @@ interface SchemaProps {}
 const Schema: React.FC<SchemaProps> = () => {
   const siteInfo = useAppSelector(selectInfo());
   const generateSchemaContent = () => ({
-    __html: `{
-        "@context": "https://schema.org",
-        "@type": "HealthAndBeautyBusiness",
-        "name": "${siteInfo.name}",
-        "url": "${siteInfo.url}",
-        "telephone": "${siteInfo.phoneNumber}",
-        "email": "${siteInfo.email}",
-    }`,
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "HealthAndBeautyBusiness",
+      name: siteInfo.name,
+      url: siteInfo.url,
+      telephone: siteInfo.phoneNumber,
+      email: siteInfo.email,
+    }),
   });
   return (
     <script
