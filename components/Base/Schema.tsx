@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React from "react";
 import { useAppSelector } from "services/redux/hooks";
 import { selectInfo } from "services/redux/siteInfoSlice";
@@ -20,10 +21,12 @@ const Schema: React.FC<SchemaProps> = () => {
     }),
   });
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={generateSchemaContent()}
-    />
+    <Head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaContent()}
+      />
+    </Head>
   );
 };
 
