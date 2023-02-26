@@ -2,6 +2,8 @@
   display: flex;
   max-width: 900px;
   margin: var(--large) auto;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .text-wrapper {
@@ -19,6 +21,7 @@
   padding: 24px;
   min-width: 200px;
   max-width: 400px;
+  flex-basis: 300px;
   width: 40%;
   flex-grow: 1;
 
