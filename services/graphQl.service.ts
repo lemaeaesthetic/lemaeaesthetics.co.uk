@@ -135,6 +135,25 @@ export const fetchPageFromSlug = async (
   }
 };
 
+export const fetchAllPages = async (useBackend: boolean = false) => {
+  try {
+    const collection = PAGE_COLLECTION;
+    const query = `
+        query GetPageFromSlug {
+            ${collection} {
+                ${ALL_PAGE_FIELDS}
+            }
+        }
+        `;
+    const pages = !useBackend
+      ? await fetchFromGraphQl(query)
+      : await fetchPageFromApi(query);
+    return pages?.[collection]?.items || [];
+  } catch (e) {
+    return e;
+  }
+};
+
 export const fetchSiteInfo = async (useBackend: boolean = false) => {
   try {
     const collection = SITE_INFO_COLLECTION;
