@@ -54,7 +54,7 @@ const FeaturedTreatmentsSlider: React.FC<FeaturedTreatmentsSliderProps> = ({
           return (
             <div
               className={styles.slide}
-              key={Math.random().toString(36).substring(2, 9)}
+              key={Buffer.from(JSON.stringify(treatment)).toString("base64")}
             >
               <TreatmentCard treatment={treatment} />
             </div>

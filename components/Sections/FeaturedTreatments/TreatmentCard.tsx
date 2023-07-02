@@ -2,6 +2,7 @@ import React from "react";
 import styles from "components/Sections/FeaturedTreatments/TreatmentCard.module.scss";
 import { Anchor } from "components/Base/Anchor";
 import { Treatment } from "types/cms";
+import { Picture } from "components/Base/Picture";
 
 interface TreatmentCardProps {
   className?: string;
@@ -25,10 +26,9 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
       className={`${className ? `${className} ` : ""}${styles.wrapper}`}
       id={id}
     >
-      <div
-        className={styles.image}
-        style={{ backgroundImage: `url(${treatment.image.url})` }}
-      />
+      <div className={styles.image}>
+        <Picture src={treatment.image.url} alt={treatment.image.alt} />
+      </div>
       {treatment.name}
       <p>{treatment.description}</p>
       <Anchor

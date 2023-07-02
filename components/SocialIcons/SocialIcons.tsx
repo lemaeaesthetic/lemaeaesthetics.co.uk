@@ -20,13 +20,14 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
   style,
 }) => {
   const siteInfo = useAppSelector(selectInfo());
+  console.log(siteInfo);
   // Change styles.SocialIcons
   const classes = `${className ? `${className} ` : ""}${styles.wrapper}`;
   // Alter render method
   return (
     <Container data-testid={testId} id={id} style={style} className={classes}>
-      {siteInfo.socialNetworks?.map((network) => {
-        if (network.network.toUpperCase() === "TWITTER") {
+      {siteInfo?.socialNetworks?.map((network) => {
+        if (network?.network?.toUpperCase() === "TWITTER") {
           return (
             <Anchor
               key={Math.random().toString(36).substring(2, 9)}
@@ -38,7 +39,7 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
             </Anchor>
           );
         }
-        if (network.network.toUpperCase() === "FACEBOOK") {
+        if (network?.network?.toUpperCase() === "FACEBOOK") {
           return (
             <Anchor
               key={Math.random().toString(36).substring(2, 9)}
@@ -50,7 +51,7 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
             </Anchor>
           );
         }
-        if (network.network.toUpperCase() === "INSTAGRAM") {
+        if (network?.network?.toUpperCase() === "INSTAGRAM") {
           return (
             <Anchor
               key={Math.random().toString(36).substring(2, 9)}

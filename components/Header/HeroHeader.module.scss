@@ -1,6 +1,7 @@
 .hero-header {
   background-color: var(--pink);
   min-height: 300px;
+  padding-bottom: var(--nav-height);
 }
 
 .inner-wrap {
@@ -9,28 +10,32 @@
   padding: var(--medium);
   padding-bottom: 0;
   margin: auto;
-  div,
-  picture {
+  flex-wrap: wrap;
+
+  div {
     display: inline-block;
   }
 
   div {
-    width: calc(100% - calc(var(--medium) * 2));
-    left: var(--medium);
-    top: var(--nav-height);
-    width: 70%;
+    width: 50%;
     flex-grow: 1;
     color: #fff;
+    flex-basis: 300px;
+    padding: var(--medium);
     h1 {
       text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
     }
   }
 
   picture {
-    width: 25%;
+    padding: var(--medium);
+    width: 50%;
     min-height: 300px;
-    margin-left: auto;
-    display: none;
+    margin: auto;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
     img {
       object-position: bottom;
     }
