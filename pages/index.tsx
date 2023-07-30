@@ -22,7 +22,7 @@ import { Schema } from "components/Base/Schema";
 
 const Home: NextPage = () => {
   const pageData = useAppSelector(selectPage());
-
+  console.log(pageData);
   return (
     <div>
       <Schema />

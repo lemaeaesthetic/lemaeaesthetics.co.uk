@@ -3,6 +3,7 @@ import { Document, NodeData } from "@contentful/rich-text-types";
 export interface CmsImage {
   url: string;
   alt: string;
+  description?: string;
 }
 
 export const SOCIAL_NETWORKS = ["TWITTER", "FACEBOOK", "INSTAGRAM"] as const;
@@ -15,6 +16,7 @@ export const sectionIds = [
   "Hero Header",
   "Generic Header",
   "About",
+  "Text Image",
   "Follow Us",
   "Content Section",
   "Gallery Section",
@@ -119,5 +121,14 @@ export interface Page {
   seoTitle?: string;
   seoDescription?: string;
   seoKeywords?: string[];
-  sections: (GenericPageSection | HeroHeaderSection | ContentSection)[];
+  sections: (
+    | GenericPageSection
+    | HeroHeaderSection
+    | ContentSection
+    | TextImageSection
+  )[];
+}
+
+export interface TextImageSection extends GenericPageSection {
+  image: CmsImage;
 }

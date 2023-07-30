@@ -5,7 +5,9 @@ import {
   GenericPageSection,
   ContentSection,
   GallerySectionData,
+  TextImageSection as TextImageSectionType,
 } from "types/cms";
+import { generateHash } from "utils/generateHash";
 import { AboutUsSection } from "./AboutUs/AboutUs";
 import { Content } from "./Content/Content";
 import { EnquireSection } from "./Enquire/EnquireSection";
@@ -13,6 +15,7 @@ import { FeaturedTreatmentsSection } from "./FeaturedTreatments/FeaturedTreatmen
 import { FollowUs } from "./FollowUs/FollowUs";
 import { GallerySection } from "./Gallery/GallerySection";
 import { TreatmentsGrid } from "./TreatmentsGrid/TreatmentsGrid";
+import { TextImageSection } from "./TextImageSection/TextImageSection";
 
 interface SectionsProps {
   className?: string;
@@ -36,7 +39,7 @@ const Sections: React.FC<SectionsProps> = ({
           case "Enquire":
             return (
               <EnquireSection
-                key={Math.random().toString(36).substring(2, 9)}
+                key={generateHash(section)}
                 data={section as GenericPageSection}
               />
             );
@@ -44,7 +47,7 @@ const Sections: React.FC<SectionsProps> = ({
             return (
               <Header
                 type="hero"
-                key={Math.random().toString(36).substring(2, 9)}
+                key={generateHash(section)}
                 data={section as HeroHeaderSection}
               />
             );
@@ -52,7 +55,7 @@ const Sections: React.FC<SectionsProps> = ({
             return (
               <Header
                 type="normal"
-                key={Math.random().toString(36).substring(2, 9)}
+                key={generateHash(section)}
                 data={section as GenericPageSection}
               />
             );
@@ -60,41 +63,46 @@ const Sections: React.FC<SectionsProps> = ({
             return (
               <AboutUsSection
                 data={section as GenericPageSection}
-                key={Math.random().toString(36).substring(2, 9)}
+                key={generateHash(section)}
+              />
+            );
+          case "Text Image":
+            return (
+              <TextImageSection
+                data={section as TextImageSectionType}
+                key={generateHash(section)}
               />
             );
           case "Treatments":
             return (
               <FeaturedTreatmentsSection
-                key={Math.random().toString(36).substring(2, 9)}
+                key={generateHash(section)}
                 data={section as GenericPageSection}
               />
             );
           case "Treatments Grid":
             return (
               <TreatmentsGrid
-                key={Math.random().toString(36).substring(2, 9)}
+                key={generateHash(section)}
                 data={section as GenericPageSection}
               />
             );
           case "Content Section":
             return (
               <Content
-                key={Math.random().toString(36).substring(2, 9)}
+                key={generateHash(section)}
                 data={section as ContentSection}
               />
             );
           case "Gallery Section":
             return (
               <GallerySection
-                key={Math.random().toString(36).substring(2, 9)}
+                key={generateHash(section)}
                 data={section as GallerySectionData}
               />
             );
           case "Follow Us":
-            return (
-              <FollowUs key={Math.random().toString(36).substring(2, 9)} />
-            );
+            return <FollowUs key={generateHash(section)} />;
           default:
             return null;
         }

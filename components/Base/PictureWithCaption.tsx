@@ -8,7 +8,7 @@ interface PictureWithCaptionProps {
   id?: string;
   testId?: string;
   src: string;
-  caption: string;
+  caption?: string;
   alt: string;
 }
 
@@ -28,7 +28,7 @@ const PictureWithCaption: React.FC<PictureWithCaptionProps> = ({
   return (
     <div data-testid={testId} style={style} className={classes} id={id}>
       <Picture src={src} alt={alt} />
-      <div className={styles.caption}>{caption}</div>
+      {caption ? <div className={styles.caption}>{caption}</div> : null}
     </div>
   );
 };
@@ -38,6 +38,7 @@ PictureWithCaption.defaultProps = {
   style: undefined,
   id: undefined,
   testId: undefined,
+  caption: undefined,
 };
 
 export { PictureWithCaption };
