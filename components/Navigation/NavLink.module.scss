@@ -5,3 +5,13 @@
 .link {
   padding: var(--small);
 }
+
+@media screen and (min-width: 900px) {
+  .link {
+    font-weight: 400;
+    color: #fff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

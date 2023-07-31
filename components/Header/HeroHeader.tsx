@@ -11,6 +11,7 @@ interface HeroHeaderProps {
   imageSrc?: string;
   linkLabel?: string;
   linkUrl?: string;
+  copy?: string;
 }
 
 const HeroHeader: React.FC<HeroHeaderProps> = ({
@@ -21,6 +22,7 @@ const HeroHeader: React.FC<HeroHeaderProps> = ({
   imageSrc,
   linkLabel,
   linkUrl,
+  copy,
 }) => {
   return (
     <header
@@ -32,6 +34,7 @@ const HeroHeader: React.FC<HeroHeaderProps> = ({
       <div className={styles["inner-wrap"]}>
         <div>
           <h1>{title}</h1>
+          {copy ? <p className={styles.copy}>{copy}</p> : null}
           <Anchor
             className={styles.cta}
             label={linkLabel || "See our Treatments"}
@@ -58,6 +61,7 @@ HeroHeader.defaultProps = {
   linkUrl: undefined,
   title: "These are words about your business",
   imageSrc: "/assets/images/model-standing.png",
+  copy: undefined,
 };
 
 export { HeroHeader };

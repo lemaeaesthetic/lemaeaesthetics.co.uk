@@ -44,6 +44,7 @@ const Sections: React.FC<SectionsProps> = ({
               />
             );
           case "Hero Header":
+            console.log(section);
             return (
               <Header
                 type="hero"

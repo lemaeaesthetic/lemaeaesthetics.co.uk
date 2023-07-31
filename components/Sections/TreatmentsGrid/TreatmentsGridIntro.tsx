@@ -1,6 +1,6 @@
 import React from "react";
 import { HeadingAndCopy } from "components/Base/HeadingAndCopy";
-import { TreatmentCard } from "./TreatmentCard";
+import { TreatmentCard } from "components/TreatmentCard";
 import styles from "./TreatmentsGridIntro.module.scss";
 
 interface TreatmentsGridIntroProps {

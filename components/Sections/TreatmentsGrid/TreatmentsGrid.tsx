@@ -4,9 +4,9 @@ import { GenericPageSection } from "types/cms";
 import { selectTreatments } from "services/redux/treatmentsSlice";
 import { useAppSelector } from "services/redux/hooks";
 import { Section } from "components/Base/Section";
+import { TreatmentCard } from "components/TreatmentCard";
 import styles from "./TreatmentsGrid.module.scss";
 import { TreatmentsGridIntro } from "./TreatmentsGridIntro";
-import { TreatmentCard } from "./TreatmentCard";
 
 interface TreatmentsGridProps {
   className?: string;

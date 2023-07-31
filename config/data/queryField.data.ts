@@ -74,6 +74,7 @@ export const ALL_HEADER_SECTION_FIELDS = `... on HeroHeaderSection {
     linkUrl
     linkLabel
     heading
+    copy
     image {
         description
         url

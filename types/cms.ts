@@ -75,6 +75,7 @@ export type HeroHeaderSection = {
   id: SectionId;
   heading: string;
   image: CmsImage;
+  copy?: string;
   linkUrl?: string;
   linkLabel?: string;
 };

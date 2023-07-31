@@ -5,7 +5,7 @@ import { useSwipe } from "hooks/useSwipe";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import { useAppSelector } from "services/redux/hooks";
 import { selectTreatments } from "services/redux/treatmentsSlice";
-import { TreatmentCard } from "./TreatmentCard";
+import { TreatmentCard } from "components/TreatmentCard";
 
 interface FeaturedTreatmentsSliderProps {
   className?: string;

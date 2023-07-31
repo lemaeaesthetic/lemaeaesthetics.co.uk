@@ -76,3 +76,34 @@
     object-fit: contain;
   }
 }
+
+@media screen and (min-width: 900px) {
+  .mobile-header {
+    display: none;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .close-button {
+    display: none;
+  }
+
+  .drawer-wrapper {
+    background-color: transparent;
+    position: static;
+  }
+
+  .underlay {
+    display: none;
+  }
+
+  .wrapper {
+    position: static;
+    transform: unset;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

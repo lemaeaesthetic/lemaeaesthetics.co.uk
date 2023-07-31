@@ -29,7 +29,7 @@ const TreatmentCard: React.FC<TreatmentCardProps> = ({
         className={styles.image}
         style={{ backgroundImage: `url(${treatment.image.url})` }}
       />
-      {treatment.name}
+      <h3 className={styles.title}>{treatment.name}</h3>
       <p>{treatment.description}</p>
       <Anchor
         href={`/treatments/${treatment.slug}`}

@@ -45,6 +45,7 @@ const Header: React.FC<HeaderProps> = ({
         style={style}
         title={data.heading}
         imageSrc={(data as HeroHeaderSection).image.url}
+        copy={(data as HeroHeaderSection).copy}
       />
     );
   }
