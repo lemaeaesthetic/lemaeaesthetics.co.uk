@@ -26,7 +26,7 @@ const Content: React.FC<ContentProps> = ({
   return (
     <Section data-testid={testId} style={style} className={classes} id={id}>
       <Container className={styles.content}>
-        {documentToReactComponents(data.content.json)}
+        {documentToReactComponents(data.content?.json)}
       </Container>
     </Section>
   );
