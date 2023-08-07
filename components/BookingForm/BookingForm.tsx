@@ -198,14 +198,12 @@ const BookingForm: React.FC<BookingFormProps> = ({
             id="name"
             type="alpha"
             label="Name"
-            placeholder="Your name"
           />
           <Input
             ref={phoneInput}
             id="phone"
             type="number"
             label="Phone"
-            placeholder="01212121212"
             name="phone"
             minLength={9}
             maxLength={13}
@@ -218,7 +216,6 @@ const BookingForm: React.FC<BookingFormProps> = ({
             name="email"
             type="email"
             label="Email"
-            placeholder="hey@email.com"
           />
           <Select
             id="treatment"
