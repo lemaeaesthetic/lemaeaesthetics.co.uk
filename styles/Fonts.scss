@@ -40,3 +40,17 @@
   font-style: italic;
   font-weight: 900;
 }
+@font-face {
+  font-family: Qwitcher;
+  src: url("/assets/fonts/QwitcherGrypen-Bold.ttf") format("truetype");
+  font-display: swap;
+  font-style: bold;
+  font-weight: 100;
+}
+@font-face {
+  font-family: Qwitcher;
+  src: url("/assets/fonts/QwitcherGrypen-Regular.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 900;
+}
