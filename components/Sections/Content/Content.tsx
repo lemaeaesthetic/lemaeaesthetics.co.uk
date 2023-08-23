@@ -23,13 +23,13 @@ const Content: React.FC<ContentProps> = ({
   // Change styles.Content
   const classes = `${className ? `${className} ` : ""}${styles.wrapper}`;
   // Alter render method
-  return (
+  return data.content?.json ? (
     <Section data-testid={testId} style={style} className={classes} id={id}>
       <Container className={styles.content}>
         {documentToReactComponents(data.content?.json)}
       </Container>
     </Section>
-  );
+  ) : null;
 };
 
 Content.defaultProps = {

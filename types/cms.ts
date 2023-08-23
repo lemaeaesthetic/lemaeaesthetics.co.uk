@@ -6,7 +6,13 @@ export interface CmsImage {
   description?: string;
 }
 
-export const SOCIAL_NETWORKS = ["TWITTER", "FACEBOOK", "INSTAGRAM"] as const;
+export const SOCIAL_NETWORKS = [
+  "TWITTER",
+  "FACEBOOK",
+  "INSTAGRAM",
+  "GOOGLE",
+  "TIK TOK",
+] as const;
 export type SocialNetwork = typeof SOCIAL_NETWORKS[number];
 
 export const sectionIds = [

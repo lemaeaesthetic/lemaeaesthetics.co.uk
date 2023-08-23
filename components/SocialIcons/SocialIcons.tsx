@@ -1,7 +1,13 @@
 import { Anchor } from "components/Base/Anchor";
 import { Container } from "components/Base/Container";
 import React from "react";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaGoogle,
+  FaInstagram,
+  FaTiktok,
+  FaTwitter,
+} from "react-icons/fa";
 import { useAppSelector } from "services/redux/hooks";
 import { selectInfo } from "services/redux/siteInfoSlice";
 import styles from "./SocialIcons.module.scss"; // Add scss module
@@ -20,7 +26,6 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
   style,
 }) => {
   const siteInfo = useAppSelector(selectInfo());
-  console.log(siteInfo);
   // Change styles.SocialIcons
   const classes = `${className ? `${className} ` : ""}${styles.wrapper}`;
   // Alter render method
@@ -60,6 +65,30 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
               label={network.label}
             >
               <FaInstagram size={30} />
+            </Anchor>
+          );
+        }
+        if (network?.network?.toUpperCase() === "TIK TOK") {
+          return (
+            <Anchor
+              key={Math.random().toString(36).substring(2, 9)}
+              href={network.profileUrl}
+              title={`Follow us on ${network.network}`}
+              label={network.label}
+            >
+              <FaTiktok size={30} />
+            </Anchor>
+          );
+        }
+        if (network?.network?.toUpperCase() === "GOOGLE") {
+          return (
+            <Anchor
+              key={Math.random().toString(36).substring(2, 9)}
+              href={network.profileUrl}
+              title={`Follow us on ${network.network}`}
+              label={network.label}
+            >
+              <FaGoogle size={30} />
             </Anchor>
           );
         }
