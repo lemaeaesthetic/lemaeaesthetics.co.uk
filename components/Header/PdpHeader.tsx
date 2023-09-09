@@ -27,7 +27,11 @@ const PdpHeader: React.FC<PdpHeaderProps> = ({
   return (
     <div style={style} className={classes} id={id}>
       <Heading content={heading} level={1} />
-      <Picture src={image?.url} alt={image?.alt} className={styles.thumbnail} />
+      <Picture
+        src={image?.url}
+        alt={image?.alt || image?.description || ""}
+        className={styles.thumbnail}
+      />
       <div className={styles.meta}>
         <div className={styles["meta-row"]}>
           From <span>£{price}</span>

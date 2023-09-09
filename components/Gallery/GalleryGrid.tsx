@@ -1,6 +1,5 @@
 import React from "react";
 import { CmsImage } from "types/cms";
-import { generateHash } from "utils/generateHash";
 import styles from "./GalleryGrid.module.scss"; // Add scss module
 import { GalleryGridTile } from "./GalleryGridTile";
 
@@ -15,7 +14,7 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ testId, id, images }) => {
   return (
     <div data-testid={testId} id={id} className={styles.wrapper}>
       {images?.map((image) => (
-        <GalleryGridTile key={generateHash({ ...image, id })} image={image} />
+        <GalleryGridTile key={image?.sys.id} image={image} />
       ))}
     </div>
   );

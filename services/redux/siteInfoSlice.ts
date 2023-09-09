@@ -11,8 +11,12 @@ const initialState: Info = {
   address: "",
   priceRange: "",
   image: {
+    sys: {
+      id: "",
+    },
     url: "",
     alt: "",
+    description: "",
   },
 };
 

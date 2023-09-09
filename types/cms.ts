@@ -2,8 +2,11 @@ import { Document, NodeData } from "@contentful/rich-text-types";
 
 export interface CmsImage {
   url: string;
-  alt: string;
+  alt?: string;
   description?: string;
+  sys: {
+    id: string;
+  };
 }
 
 export const SOCIAL_NETWORKS = [

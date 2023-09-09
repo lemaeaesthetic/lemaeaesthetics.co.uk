@@ -26,7 +26,7 @@ const GalleryGridTile: React.FC<GalleryGridTileProps> = ({
         label=""
         target="_blank"
       >
-        <Picture src={image.url} alt={image.alt} />
+        <Picture src={image.url} alt={image.alt || image.description || ""} />
       </Anchor>
     </div>
   );

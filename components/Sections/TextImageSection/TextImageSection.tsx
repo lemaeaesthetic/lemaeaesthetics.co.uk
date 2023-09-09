@@ -38,7 +38,7 @@ const TextImageSection: React.FC<TextImageSectionProps> = ({
       />
       <PictureWithCaption
         src={data.image.url}
-        alt={data.image.alt}
+        alt={data.image.alt || data.image.description || ""}
         caption={data.image.description}
         className={styles["image-wrapper"]}
       />

@@ -8,8 +8,12 @@ const initialState: Page = {
   slug: "/",
   label: "",
   image: {
+    sys: {
+      id: "",
+    },
     url: "",
     alt: "",
+    description: "",
   },
   sections: [],
 };
