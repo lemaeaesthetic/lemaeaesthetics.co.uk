@@ -30,7 +30,7 @@ const Picture: React.FC<PictureProps> = ({
       className={`${styles.picture}${className ? ` ${className}` : ""}`}
       id={id}
     >
-      <Image src={src} alt={alt} fill />
+      <Image src={`${src}`} alt={alt} fill />
     </picture>
   );
 };

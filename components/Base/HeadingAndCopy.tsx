@@ -31,7 +31,7 @@ const HeadingAndCopy: React.FC<HeadingAndCopyProps> = ({
   let CopyElement;
   if (typeof copy === "string") {
     CopyElement = <Paragraph>{copy}</Paragraph>;
-  } else {
+  } else if (copy?.length) {
     CopyElement = copy.map((line) => (
       <Paragraph key={Math.random().toString(36).substring(2, 9)}>
         {line}

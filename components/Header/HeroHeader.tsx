@@ -33,7 +33,11 @@ const HeroHeader: React.FC<HeroHeaderProps> = ({
     >
       <div className={styles["inner-wrap"]}>
         <div>
-          <h1>{title}</h1>
+          <h1>
+            {title?.split("\\n").map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </h1>
           {copy ? <p className={styles.copy}>{copy}</p> : null}
           <Anchor
             className={styles.cta}

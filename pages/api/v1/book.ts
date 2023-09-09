@@ -16,7 +16,8 @@ const TRANSPORT = nodemailer.createTransport({
 const verifyNodeMailer = () =>
   // ensure transport is working
   new Promise((resolve, reject) => {
-    console.log("Attempting to verify nodemailer config");
+    ("Attempting to verify nodemailer config");
+
     TRANSPORT.verify((err, success) => {
       if (err) {
         reject(err);
@@ -141,12 +142,12 @@ const Book: NextApiHandler = async (
         });
       }
     }
-  } catch (e: ReturnType<Error>) {
+  } catch (e: unknown) {
     res.status(500).json({
       success: false,
       data: {
         message: "INTERNAL_ERROR",
-        details: e.message,
+        details: (e as Error).message,
       },
     });
   }

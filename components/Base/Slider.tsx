@@ -52,7 +52,7 @@ const Slider: React.FC<SliderProps> = ({
             } * 100%)))`,
           }}
         >
-          {slides.map((slide) => {
+          {slides?.map((slide) => {
             return (
               <div
                 className={styles.slide}
@@ -77,12 +77,12 @@ const Slider: React.FC<SliderProps> = ({
           <FaChevronLeft size={20} />
         </button>
         <div className={styles.counter}>
-          <span>{activeSlide + 1}</span>/<span>{slides.length}</span>
+          <span>{activeSlide + 1}</span>/<span>{slides?.length || 0}</span>
         </div>
         <button
           className={styles.trigger}
           type="button"
-          disabled={activeSlide + 1 === slides.length}
+          disabled={activeSlide + 1 === slides?.length}
           aria-label="Next slide"
           onClick={() => {
             setActiveSlide(activeSlide + 1);

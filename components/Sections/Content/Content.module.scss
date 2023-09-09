@@ -2,6 +2,6 @@
   margin: 48px auto;
 }
 .content {
-  max-width: 900px;
+  max-width: var(--max-container-width);
   margin: auto;
 }

@@ -108,6 +108,7 @@ export type GallerySectionData = {
   heading: string;
   description: string;
   gallery: CmsImage[];
+  displayType?: "SLIDER" | "GRID";
 };
 
 export type GenericPageSection = {
@@ -117,6 +118,13 @@ export type GenericPageSection = {
   linkUrl?: string;
   linkLabel?: string;
 };
+
+export type AnySection =
+  | GenericPageSection
+  | HeroHeaderSection
+  | ContentSection
+  | TextImageSection
+  | GallerySectionData;
 
 export interface Page {
   title: string;
@@ -128,12 +136,7 @@ export interface Page {
   seoTitle?: string;
   seoDescription?: string;
   seoKeywords?: string[];
-  sections: (
-    | GenericPageSection
-    | HeroHeaderSection
-    | ContentSection
-    | TextImageSection
-  )[];
+  sections: AnySection[];
 }
 
 export interface TextImageSection extends GenericPageSection {

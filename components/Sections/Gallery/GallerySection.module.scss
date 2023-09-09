@@ -2,11 +2,22 @@
   margin: 72px auto;
 }
 .container {
-  max-width: 900px;
+  max-width: var(--max-container-width);
   display: flex;
   margin: auto;
   flex-wrap: wrap;
   > div {
     flex-grow: 1;
+  }
+
+  &.grid {
+    flex-direction: column;
+    .heading {
+      padding: var(--medium) calc(var(--medium) * 2);
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 }

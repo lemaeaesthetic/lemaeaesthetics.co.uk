@@ -81,6 +81,22 @@ export const ALL_HEADER_SECTION_FIELDS = `... on HeroHeaderSection {
     }
 }`;
 
+export const ALL_GALLERY_SECTION_FIELDS = `... on GallerySection {
+    id
+    heading
+    description
+    displayType
+    galleryCollection {
+        items {
+            url
+            description
+            sys {
+                id
+            }
+        }
+    }
+}`;
+
 export const ALL_CONTENT_SECTION_FIELDS = `... on ContentSection {
     id
     heading
@@ -122,6 +138,7 @@ export const ALL_PAGE_FIELDS = `items {
             ${ALL_SECTION_FIELDS}
             ${ALL_CONTENT_SECTION_FIELDS}
             ${ALL_TEXT_IMAGE_SECTION_FIELDS}
+            ${ALL_GALLERY_SECTION_FIELDS}
         }
     }
 }`;

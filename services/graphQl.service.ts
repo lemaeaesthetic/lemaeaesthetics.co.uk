@@ -13,7 +13,7 @@ import {
   ALL_SERVICE_FIELDS,
   SITE_INFO_FIELDS,
 } from "config/data/queryField.data";
-import { Navigation, SectionId } from "types/cms";
+import { AnySection, Navigation, SectionId } from "types/cms";
 import { fetchPageFromApi } from "./api.service";
 
 export const fetchFromGraphQl = async (query: string) => {
@@ -124,9 +124,19 @@ export const fetchPageFromSlug = async (
       : await fetchPageFromApi(query);
     const obj = page?.[collection]?.items?.[0];
     if (!obj) return undefined;
+    // Make sections eaSIER TO ACCESS
     obj.sections = obj?.[SECTION_COLLECTION]?.items
       ? [...obj[SECTION_COLLECTION].items]
       : [];
+    // Check if we have a 'gallerySection'
+    const gallerySection = obj.sections.find(
+      (section: AnySection) => section.id === "Gallery Section"
+    );
+    // Restructure the gallery section
+    if (gallerySection) {
+      gallerySection.gallery = gallerySection.galleryCollection?.items;
+      delete gallerySection.galleryCollection;
+    }
     // tidy up
     delete obj?.[SECTION_COLLECTION];
     return obj;

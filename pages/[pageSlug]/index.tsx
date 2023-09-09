@@ -44,7 +44,6 @@ const GenericPage: NextPage = () => {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
     try {
-      console.log("siteInfo");
       const page = await fetchPageFromSlug(context?.params?.pageSlug as string);
       const nav = await fetchMainNav();
       const services = await fetchAllServices();

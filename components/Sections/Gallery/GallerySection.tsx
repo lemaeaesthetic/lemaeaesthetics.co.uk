@@ -26,9 +26,17 @@ const GallerySection: React.FC<GallerySectionProps> = ({
   // Alter render method
   return (
     <Section data-testid={testId} style={style} className={classes} id={id}>
-      <Container className={styles.container}>
-        <HeadingAndCopy heading={data.heading} copy={data.description} />
-        <Gallery gallery={data.gallery} />
+      <Container
+        className={`${styles.container} ${
+          styles[data.displayType?.toLowerCase() || "slider"]
+        }`}
+      >
+        <HeadingAndCopy
+          className={styles.heading}
+          heading={data.heading}
+          copy={data.description}
+        />
+        <Gallery gallery={data.gallery} displayType={data.displayType} />
       </Container>
     </Section>
   );
