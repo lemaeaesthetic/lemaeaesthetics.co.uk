@@ -56,6 +56,7 @@ const ServicePage: NextPage = () => {
             heading: `${treatment.name}'s Gallery`,
             description: `View our happy client who have had ${treatment.name} with us. `,
             gallery: treatment.gallery,
+            displayType: "GRID",
           }}
         />
         <EnquireSection

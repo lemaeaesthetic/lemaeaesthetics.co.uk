@@ -14,7 +14,7 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ testId, id, images }) => {
   return (
     <div data-testid={testId} id={id} className={styles.wrapper}>
       {images?.map((image) => (
-        <GalleryGridTile key={image?.sys.id} image={image} />
+        <GalleryGridTile key={image?.sys?.id} image={image} />
       ))}
     </div>
   );

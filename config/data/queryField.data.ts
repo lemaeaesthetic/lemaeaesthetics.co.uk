@@ -12,6 +12,9 @@ export const ALL_SERVICE_FIELDS = `items {
     image {
         description
         url
+        sys {
+            id
+        }
     }
     content {
         json
@@ -20,6 +23,9 @@ export const ALL_SERVICE_FIELDS = `items {
         items {
             url
             description
+            sys {
+                id
+            }
         }
     }
 }`;
@@ -51,6 +57,10 @@ export const SITE_INFO_FIELDS = `items {
     priceRange
     image {
         url
+        description
+        sys {
+            id
+        }
     }
     ${SOCIAL_NETWORKS_COLLECTION} {
         ${SOCIAL_NETWORK_FIELDS}
@@ -78,6 +88,9 @@ export const ALL_HEADER_SECTION_FIELDS = `... on HeroHeaderSection {
     image {
         description
         url
+        sys {
+            id
+        }
     }
 }`;
 
@@ -111,6 +124,9 @@ export const ALL_TEXT_IMAGE_SECTION_FIELDS = `... on TextImageSection {
         url
         title
         description
+        sys {
+            id
+        }
     }
 }`;
 
@@ -125,11 +141,17 @@ export const ALL_PAGE_FIELDS = `items {
         url
         title
         description
+        sys {
+            id
+        }
     }
     image {
         url
         title
         description
+        sys {
+            id
+        }
     }
     ${SECTION_COLLECTION} (limit: 10) {
         items {
