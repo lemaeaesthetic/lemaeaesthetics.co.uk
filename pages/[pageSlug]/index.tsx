@@ -1,5 +1,4 @@
 import React from "react";
-import type { NextPage } from "next";
 import pages from "config/data/page.data";
 import { Meta } from "components/Meta/Meta";
 import { NavMenu } from "components/Navigation/NavMenu";
@@ -9,10 +8,9 @@ import {
   fetchPageFromSlug,
   fetchSiteInfo,
 } from "services/graphQl.service";
-import { useAppSelector } from "services/redux/hooks";
-import { selectPage, setPage } from "services/redux/pageSlice";
+import { setPage } from "services/redux/pageSlice";
 import { Sections } from "components/Sections/Sections";
-import { isNavigation } from "types/cms";
+import { Info, Page, isNavigation } from "types/cms";
 import { setTreatments } from "services/redux/treatmentsSlice";
 import { setNavigation } from "services/redux/navigationSlice";
 import { setInfo } from "services/redux/siteInfoSlice";
@@ -20,8 +18,13 @@ import { wrapper } from "services/redux/store";
 import { Footer } from "components/Footer/Footer";
 import { Schema } from "components/Base/Schema";
 
-const GenericPage: NextPage = () => {
-  const pageData = useAppSelector(selectPage());
+const GenericPage = ({
+  siteInfo,
+  pageData,
+}: {
+  siteInfo: Info;
+  pageData: Page;
+}) => {
   return (
     <div>
       <Schema />
@@ -36,7 +39,7 @@ const GenericPage: NextPage = () => {
         <NavMenu />
         <Sections sections={pageData.sections} />
       </main>
-      <Footer />
+      <Footer info={siteInfo} />
     </div>
   );
 };
@@ -55,7 +58,12 @@ export const getServerSideProps = wrapper.getServerSideProps(
       store.dispatch(setPage(page));
       store.dispatch(setInfo(siteInfo as any));
       return {
-        props: {},
+        props: {
+          nav,
+          siteInfo,
+          services,
+          pageData: page,
+        },
       };
     } catch (e) {
       return { notFound: true };

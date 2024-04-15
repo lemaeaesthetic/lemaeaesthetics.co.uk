@@ -1,5 +1,4 @@
 import React from "react";
-import type { NextPage } from "next";
 import pages from "config/data/page.data";
 import { Meta } from "components/Meta/Meta";
 import { NavMenu } from "components/Navigation/NavMenu";
@@ -12,16 +11,15 @@ import {
 import { wrapper } from "services/redux/store";
 import { setTreatments } from "services/redux/treatmentsSlice";
 import { setNavigation } from "services/redux/navigationSlice";
-import { isNavigation } from "types/cms";
-import { selectPage, setPage } from "services/redux/pageSlice";
-import { useAppSelector } from "services/redux/hooks";
+import { Info, Page, isNavigation } from "types/cms";
+import { setPage } from "services/redux/pageSlice";
 import { Footer } from "components/Footer/Footer";
 import { setInfo } from "services/redux/siteInfoSlice";
 import { Sections } from "components/Sections/Sections";
 import { Schema } from "components/Base/Schema";
 
-const Home: NextPage = () => {
-  const pageData = useAppSelector(selectPage());
+const Home = ({ siteInfo, pageData }: { pageData: Page; siteInfo: Info }) => {
+  console.log(siteInfo.address);
   return (
     <div>
       <Schema />
@@ -35,7 +33,7 @@ const Home: NextPage = () => {
       <main>
         <NavMenu />
         <Sections sections={pageData.sections} />
-        <Footer />
+        <Footer info={siteInfo} />
       </main>
       <footer />
     </div>
@@ -45,18 +43,25 @@ const Home: NextPage = () => {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
     try {
-      const page = await fetchPageFromSlug("/");
+      const pageData = await fetchPageFromSlug("/");
       const nav = await fetchMainNav();
       const services = await fetchAllServices();
       const siteInfo = await fetchSiteInfo();
-      if (!page || !services || !isNavigation(nav) || !siteInfo)
+
+      if (!pageData || !services || !isNavigation(nav) || !siteInfo) {
         return { notFound: true };
+      }
       store.dispatch(setTreatments(services));
       store.dispatch(setNavigation(nav));
-      store.dispatch(setPage(page));
+      store.dispatch(setPage(pageData));
       store.dispatch(setInfo(siteInfo as any));
       return {
-        props: {},
+        props: {
+          siteInfo,
+          pageData,
+          nav,
+          services,
+        },
       };
     } catch (e) {
       return { notFound: true };

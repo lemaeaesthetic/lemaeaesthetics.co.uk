@@ -3,6 +3,8 @@ import { Container } from "components/Base/Container";
 import { Picture } from "components/Base/Picture";
 import { SocialIcons } from "components/SocialIcons/SocialIcons";
 import React from "react";
+import { Info } from "types/cms";
+import Link from "next/link";
 import styles from "./Footer.module.scss"; // Add scss module
 import { FooterColumn } from "./FooterColumn";
 
@@ -11,9 +13,16 @@ interface FooterProps {
   style?: React.CSSProperties;
   id?: string;
   testId?: string;
+  info: Info;
 }
 
-const Footer: React.FC<FooterProps> = ({ testId, className, id, style }) => {
+const Footer: React.FC<FooterProps> = ({
+  testId,
+  className,
+  id,
+  style,
+  info,
+}) => {
   // Change styles.Footer
   const classes = `${className ? `${className} ` : ""}${styles.wrapper}`;
   // Alter render method
@@ -65,6 +74,19 @@ const Footer: React.FC<FooterProps> = ({ testId, className, id, style }) => {
                 />
               </li>
             </ul>
+          </FooterColumn>
+          <FooterColumn>
+            <h3>Contact Us</h3>
+            <address>
+              <Link href={`tel:${info?.phoneNumber}`} title="Call me">
+                {info?.phoneNumber}
+              </Link>
+              <ul>
+                {info?.address.split("\n").map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </address>
           </FooterColumn>
         </div>
       </Container>

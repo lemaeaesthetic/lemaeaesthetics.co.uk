@@ -13,7 +13,7 @@ import { selectPage, setPage } from "services/redux/pageSlice";
 import { setNavigation } from "services/redux/navigationSlice";
 import { Info, Navigation, Treatment } from "types/cms";
 import { Sections } from "components/Sections/Sections";
-import { setInfo } from "services/redux/siteInfoSlice";
+import { selectInfo, setInfo } from "services/redux/siteInfoSlice";
 import { setTreatments } from "services/redux/treatmentsSlice";
 
 const NotFound: NextPage = () => {
@@ -35,13 +35,14 @@ const NotFound: NextPage = () => {
     })();
   }, [dispatch]);
   const page = useAppSelector(selectPage());
+  const info = useAppSelector(selectInfo());
 
   return (
     <div>
       <main>
         <NavMenu />
         <Sections sections={page.sections || []} />
-        <Footer />
+        <Footer info={info} />
       </main>
       <footer />
     </div>
