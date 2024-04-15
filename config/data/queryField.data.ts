@@ -55,6 +55,7 @@ export const SITE_INFO_FIELDS = `items {
     email
     address
     priceRange
+    openHours
     image {
         url
         description

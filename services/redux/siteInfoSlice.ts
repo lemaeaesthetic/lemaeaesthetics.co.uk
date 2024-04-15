@@ -10,6 +10,7 @@ const initialState: Info = {
   url: "",
   address: "",
   priceRange: "",
+  openHours: [],
   image: {
     sys: {
       id: "",

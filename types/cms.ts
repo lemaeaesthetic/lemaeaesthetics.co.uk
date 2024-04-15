@@ -47,6 +47,7 @@ export interface Info {
   image: CmsImage;
   address: string;
   priceRange: string;
+  openHours: string[];
 }
 
 export interface Treatment {

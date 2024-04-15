@@ -17,6 +17,7 @@ import { AnySection, Navigation, SectionId } from "types/cms";
 import { fetchPageFromApi } from "./api.service";
 
 export const fetchFromGraphQl = async (query: string) => {
+  console.log(query);
   const req = await fetch(
     `${process.env.API_BASE_URL}/${process.env.SPACE_ID}/environments/master`,
     {

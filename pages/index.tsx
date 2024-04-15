@@ -19,7 +19,6 @@ import { Sections } from "components/Sections/Sections";
 import { Schema } from "components/Base/Schema";
 
 const Home = ({ siteInfo, pageData }: { pageData: Page; siteInfo: Info }) => {
-  console.log(siteInfo.address);
   return (
     <div>
       <Schema />
@@ -47,7 +46,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       const nav = await fetchMainNav();
       const services = await fetchAllServices();
       const siteInfo = await fetchSiteInfo();
-
+      console.log(siteInfo);
       if (!pageData || !services || !isNavigation(nav) || !siteInfo) {
         return { notFound: true };
       }

@@ -23,6 +23,7 @@ const Footer: React.FC<FooterProps> = ({
   style,
   info,
 }) => {
+  console.log(info);
   // Change styles.Footer
   const classes = `${className ? `${className} ` : ""}${styles.wrapper}`;
   // Alter render method
@@ -88,6 +89,16 @@ const Footer: React.FC<FooterProps> = ({
               </ul>
             </address>
           </FooterColumn>
+          {info?.openHours?.length ? (
+            <FooterColumn>
+              <h3>Open Hours</h3>
+              <ul>
+                {info?.openHours.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </FooterColumn>
+          ) : null}
         </div>
       </Container>
     </footer>
