@@ -1,9 +1,11 @@
 .wrapper {
   background-color: var(--pink);
   color: #fff;
+  flex-basis: 200px;
   h3 {
     margin-top: 0;
   }
+
   ul {
     margin: 0;
     padding: 0;
