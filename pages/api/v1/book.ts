@@ -69,7 +69,6 @@ const constructMessage = (body: any) => {
   return {
     from: `Contact From (${process.env.NEXT_PUBLIC_BASE_URL}) <${process.env.MAILER_SENDER}>`,
     to: process.env.MAILER_RECEIVER,
-    replyTo: body.email,
     subject: `Enquiry from ${body.name} for ${body.treatment}`,
     text: `Name: ${body.name}\n\nPhone: ${body.phone}\n\nEmail: ${
       body.email
