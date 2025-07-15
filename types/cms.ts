@@ -29,6 +29,7 @@ export const sectionIds = [
   "Follow Us",
   "Content Section",
   "Gallery Section",
+  "Review Section",
 ] as const;
 export type SectionId = typeof sectionIds[number];
 

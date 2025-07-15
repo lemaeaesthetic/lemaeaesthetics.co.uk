@@ -119,6 +119,10 @@ export const ALL_CONTENT_SECTION_FIELDS = `... on ContentSection {
     }
 }`;
 
+export const ALL_REVIEW_SECTION_FIELDS = `... on ReviewSection {
+    id
+}`;
+
 export const ALL_TEXT_IMAGE_SECTION_FIELDS = `... on TextImageSection {
     ${BASE_SECTION_FIELDS}
     image {
@@ -160,6 +164,7 @@ export const ALL_PAGE_FIELDS = `items {
             ${ALL_HEADER_SECTION_FIELDS}
             ${ALL_SECTION_FIELDS}
             ${ALL_CONTENT_SECTION_FIELDS}
+            ${ALL_REVIEW_SECTION_FIELDS}
             ${ALL_TEXT_IMAGE_SECTION_FIELDS}
             ${ALL_GALLERY_SECTION_FIELDS}
         }

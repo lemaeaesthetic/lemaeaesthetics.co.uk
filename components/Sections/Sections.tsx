@@ -16,6 +16,7 @@ import { FollowUs } from "./FollowUs/FollowUs";
 import { GallerySection } from "./Gallery/GallerySection";
 import { TreatmentsGrid } from "./TreatmentsGrid/TreatmentsGrid";
 import { TextImageSection } from "./TextImageSection/TextImageSection";
+import { Review } from "./Review/Review";
 
 interface SectionsProps {
   className?: string;
@@ -103,6 +104,8 @@ const Sections: React.FC<SectionsProps> = ({
             );
           case "Follow Us":
             return <FollowUs key={generateHash(section)} />;
+          case "Review Section":
+            return <Review key={generateHash(section)} />;
           default:
             return null;
         }

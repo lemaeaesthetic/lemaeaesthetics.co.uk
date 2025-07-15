@@ -23,7 +23,6 @@ const Footer: React.FC<FooterProps> = ({
   style,
   info,
 }) => {
-  console.log(info);
   // Change styles.Footer
   const classes = `${className ? `${className} ` : ""}${styles.wrapper}`;
   // Alter render method
@@ -44,6 +43,15 @@ const Footer: React.FC<FooterProps> = ({
             <ul>
               <li>
                 <Anchor href="/about" label="About" title="About" />
+              </li>
+              <li>
+                <Anchor
+                  href="https://app.revu.cloud/f-150209"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  label="Feedback"
+                  title="Feedback"
+                />
               </li>
               <li>
                 <Anchor href="/contact" label="Contact" title="Contact" />

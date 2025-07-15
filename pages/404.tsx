@@ -30,7 +30,7 @@ const NotFound: NextPage = () => {
         dispatch(setInfo(siteInfo as Info));
         dispatch(setTreatments(services as Treatment[]));
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     })();
   }, [dispatch]);

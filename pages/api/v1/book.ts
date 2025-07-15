@@ -20,7 +20,7 @@ const verifyNodeMailer = () =>
 
     TRANSPORT.verify((err, success) => {
       if (err) {
-        console.log(err);
+        console.error(err);
         reject(err);
       } else {
         console.log("Server ready to send mail");
@@ -113,13 +113,6 @@ const Book: NextApiHandler = async (
     const errors = validateFields(body);
     // Failed validation
     if (errors.length > 0) {
-      console.log({
-        success: false,
-        data: {
-          message: "VALIDATION_FAILED",
-          details: errors,
-        },
-      });
       res.status(400).json({
         success: false,
         data: {
@@ -140,13 +133,6 @@ const Book: NextApiHandler = async (
           },
         });
       } else {
-        console.log({
-          success: false,
-          data: {
-            message: "REQUEST_ERROR",
-            details: result.response,
-          },
-        });
         res.status(401).json({
           success: false,
           data: {
@@ -157,7 +143,7 @@ const Book: NextApiHandler = async (
       }
     }
   } catch (e: unknown) {
-    console.log(e);
+    console.error(e);
     res.status(500).json({
       success: false,
       data: {

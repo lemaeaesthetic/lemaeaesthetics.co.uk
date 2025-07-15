@@ -4,6 +4,7 @@
 
 .link {
   padding: var(--small);
+  white-space: nowrap;
 }
 
 @media screen and (min-width: 900px) {

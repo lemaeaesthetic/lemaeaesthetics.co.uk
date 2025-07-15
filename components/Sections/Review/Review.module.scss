@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  margin: var(--large) auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.content {
+  max-width: var(--max-container-width);
+  padding: var(--large);
+  margin: auto;
+}

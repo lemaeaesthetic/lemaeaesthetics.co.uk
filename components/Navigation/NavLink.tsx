@@ -16,6 +16,8 @@ const NavLink: React.FC<NavLinkProps> = ({
   style,
   href,
   closeCallback,
+  target,
+  rel,
   title,
   label,
 }) => {
@@ -29,10 +31,12 @@ const NavLink: React.FC<NavLinkProps> = ({
         onClick={() => {
           closeCallback();
         }}
-        href={`/${href}`}
+        href={`${href.startsWith("http") ? "" : "/"}${href}`}
         title={title}
         label={label}
         className={styles.link}
+        target={target}
+        rel={rel}
       />
     </ListItem>
   );

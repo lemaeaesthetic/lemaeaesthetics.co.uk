@@ -60,6 +60,15 @@ const NavLinks = forwardRef<HTMLDivElement, NavLinksProps>((props, ref) => {
               closeCallback={props.closeCallback}
             />
           ))}
+          <NavLink
+            href="https://app.revu.cloud/f-150209"
+            label="Feedback"
+            title="Feedback"
+            className={styles["nav-link"]}
+            closeCallback={props.closeCallback}
+            rel="noopener noreferrer"
+            target="_blank"
+          />
         </List>
       </div>
     </div>
